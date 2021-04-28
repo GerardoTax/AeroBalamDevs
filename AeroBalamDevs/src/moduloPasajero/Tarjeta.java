@@ -13,9 +13,9 @@ public class Tarjeta {
     private int numeroTarjeta;
     private int dineroActual;
     private int codigoCVC;
-    private Pasaporte pasaporte;
+    private int  pasaporte;
     
-    public Tarjeta(int numeroTarjeta, int dineroActual, int codigoCVC, Pasaporte pasaporte){
+    public Tarjeta(int  pasaporte, int numeroTarjeta, int dineroActual, int codigoCVC){
         
         this.numeroTarjeta=numeroTarjeta;
         this.dineroActual=dineroActual;
@@ -35,9 +35,7 @@ public class Tarjeta {
         return codigoCVC;
     }
 
-    public Pasaporte getPasaporte() {
-        return pasaporte;
-    }
+   
 
     public void setNumeroTarjeta(int numeroTarjeta) {
         this.numeroTarjeta = numeroTarjeta;
@@ -51,8 +49,6 @@ public class Tarjeta {
         this.codigoCVC = codigoCVC;
     }
 
-    public void setPasaporte(Pasaporte pasaporte) {
-        this.pasaporte = pasaporte;
-    }
+    
     
 }

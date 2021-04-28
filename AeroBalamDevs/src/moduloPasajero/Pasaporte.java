@@ -5,13 +5,14 @@
  */
 package moduloPasajero;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  *
  * @author dell
  */
-public class Pasaporte {
+public class Pasaporte implements Serializable{
     private int noPasaporte;
     private String  contrasella;
     private LocalDate fechaNacimiento;
@@ -140,4 +141,10 @@ public class Pasaporte {
     public void sumarMillas(int cantidad){
         this.millasrecoridas=this.millasrecoridas+cantidad;
     }
+
+    @Override
+    public String toString() {
+        return "Pasaporte{" + "noPasaporte=" + noPasaporte + ", contrasella=" + contrasella + ", fechaNacimiento=" + fechaNacimiento + ", nacionalidad=" + nacionalidad + ", estadoCivil=" + estadoCivil + ", nombre=" + nombre + ", apellido=" + apellido + ", Sexo=" + Sexo + ", fechaVencimiento=" + fechaVencimiento + ", fechaEmision=" + fechaEmision + ", paisActual=" + paisActual + ", millasrecoridas=" + millasrecoridas + '}';
+    }
+    
 }
