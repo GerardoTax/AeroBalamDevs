@@ -35,7 +35,8 @@ public class ManejadorDeTablaHistorial {
             pasaporte.getNombre(),pasaporte.getApellido(),pasaporte.getSexo(),pasaporte.getFechaVencimiento(),
             pasaporte.getFechaEmision(),pasaporte.getPaisActual(),pasaporte.getMillasrecoridas()});
         }
-
+        
+       
     }
     
 }

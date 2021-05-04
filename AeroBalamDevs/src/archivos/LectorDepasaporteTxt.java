@@ -20,7 +20,7 @@ import moduloPasajero.Pasaporte;
  * @author dell
  */
 public class LectorDepasaporteTxt {
-    //File=archivo
+   /* //File=archivo
     //FileReader necesita a un archivo para poder leerlo
     //BufferedReader lee el texto del archivo
     public ArrayList<Pasaporte> leerFichero(File archivo,JTextArea text) throws FileNotFoundException, IOException {
@@ -32,8 +32,8 @@ public class LectorDepasaporteTxt {
             //con la linea leida, separamos los campos
             String[] campos=separarCampos(linea);
             //pasamos el texto a objeto
-            Pasaporte pas = ConstructorPasaporte.construirpasaporte(campos);
-            if(pas!=null){
+          //  Pasaporte pas = ConstructorPasaporte.construirpasaporte(campos);
+            //if(pas!=null){
                 lisPasaporte.add(pas);
             }
             text.append("\n"+linea);
@@ -49,5 +49,5 @@ public class LectorDepasaporteTxt {
         String[] campos = lineaDeCampos.split(",");
         return campos;
     }
-    
+    */
 }

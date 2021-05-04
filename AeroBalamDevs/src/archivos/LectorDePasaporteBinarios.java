@@ -23,7 +23,7 @@ public class LectorDePasaporteBinarios {
         String[]  archivos=EscritorDePasaporteBinarios.FILE_PASAPORTE.list();
         ObjectInputStream lector;   
         System.out.println("Archivos:"+archivos.length);
-        for (int i = 0; i < archivos.length; i++) {
+        for (int i = 0; i <3; i++) {
             String archivo = archivos[i];
             lector = new ObjectInputStream(new FileInputStream(EscritorDePasaporteBinarios.FILE_PASAPORTE+"/"+archivo));
             Pasaporte p =(Pasaporte)lector.readObject();
@@ -32,5 +32,5 @@ public class LectorDePasaporteBinarios {
         }
         return lisPasaporte;
     }
-    
+    //archivos.length;
 }

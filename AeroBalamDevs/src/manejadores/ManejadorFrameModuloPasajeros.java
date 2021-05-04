@@ -19,10 +19,7 @@ public class ManejadorFrameModuloPasajeros {
         this.moduloPasajeros=moduloPasajeros;
     
     }
-    public void validarFormulario(){
-        
-        
-    }
+    
     
     
 }
