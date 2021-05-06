@@ -5,12 +5,13 @@
  */
 package moduloAeropuerto.jFrame;
 
-import Jframe.Principal;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import moduloAeropuerto.Manejadores.ManejadorLogin;
+import moduloPasajero.Jframe.Principal;
 
 /**
  *

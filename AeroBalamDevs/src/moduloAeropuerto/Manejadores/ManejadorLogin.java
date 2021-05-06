@@ -7,6 +7,7 @@ package moduloAeropuerto.Manejadores;
 
 import javax.swing.JOptionPane;
 import moduloAeropuerto.jFrame.Avion;
+import moduloAeropuerto.jFrame.FrameAdministrador;
 import moduloAeropuerto.jFrame.FrameGerencia;
 import moduloAeropuerto.jFrame.FrameOperador;
 import moduloAeropuerto.jFrame.LoginAeropuerto;
@@ -26,8 +27,9 @@ public class ManejadorLogin {
     
     public void verificadorUsuario(){
         if(loginAeropuerto.getUsuarioTextField1().getText().equals("mama") && loginAeropuerto.getPasswordField1().getText().equals("1234") && loginAeropuerto. getjComboBox1().getSelectedItem().equals("Administracion")){
-            Avion avion=new Avion();
-            avion.setVisible(true);
+            
+            FrameAdministrador tmp=new FrameAdministrador();
+            tmp.setVisible(true);
             loginAeropuerto.setVisible(false);
          
         }

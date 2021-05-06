@@ -5,7 +5,9 @@
  */
 package ejecutable;
 
-import Jframe.Principal;
+import moduloPasajero.Jframe.Principal;
+
+
 
 /**
  *
