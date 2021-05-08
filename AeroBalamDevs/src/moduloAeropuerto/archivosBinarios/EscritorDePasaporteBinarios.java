@@ -12,7 +12,8 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import moduloAeropuerto.clases.estructuraDeArchivo.Aeropuerto;
-import moduloPasajero.clases.Pasaporte;
+import moduloAeropuerto.clases.estructuraDeArchivo.Pasaporte;
+
 
 /**
  *
@@ -20,11 +21,11 @@ import moduloPasajero.clases.Pasaporte;
  */
 public class EscritorDePasaporteBinarios {
      
-    public static final File  FILE_PASAPORTE= new File("/Users/dell/Desktop/AeroBalamDevs/AeroBalamDevs/src/moduloAeropuerto/GuardarArhivosBinarios/ArchivosBinarioPasaporte");
+    public static final File  FILE_PASAPORTE= new File("/Users/dell/Desktop/AeroBalamDevs/AeroBalamDevs/src/moduloAeropuerto/GuardarArhivosBinarios/ArchivosBinariosPasaporte");
     
-    public void guardarAeropuerto(ArrayList<Pasaporte> lisPasaporte) throws IOException,FileNotFoundException{
+    public void guardarPasaporte(ArrayList<Pasaporte> pasaporte) throws IOException,FileNotFoundException{
          
-        for (Pasaporte pasaportes : lisPasaporte) {
+        for (Pasaporte pasaportes : pasaporte) {
             // FileOutputStream para escribir flujos de byte
             //ObjectOutputStream  para contruir objetos
           FileOutputStream  fileOutput = new FileOutputStream(FILE_PASAPORTE+"/"+pasaportes.getNoPasaporte());

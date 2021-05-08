@@ -21,14 +21,17 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import moduloAeropuerto.Manejadores.LeerArchivosBinarios;
+import moduloAeropuerto.archivosBinarios.EscritorDePasaporteBinarios;
+import moduloAeropuerto.archivosBinarios.LeerAerolineaBinaria;
+import moduloAeropuerto.archivosBinarios.LeerPasaporteBinario;
 import moduloAeropuerto.clases.estructuraDeArchivo.Aerolinea;
+import moduloAeropuerto.clases.estructuraDeArchivo.Aviones;
+import moduloAeropuerto.clases.estructuraDeArchivo.Pasaporte;
 import moduloPasajero.Jframe.JframeTarjeta;
-import moduloPasajero.archivos.EscritorDePasaporteBinarios;
-import moduloPasajero.archivos.LectorDePasaporteBinarios;
-import moduloPasajero.archivos.LectorDepasaporteTxt;
-import moduloPasajero.archivos.ManejadorDeTablaHistorial;
-import moduloPasajero.clases.Pasaporte;
 import moduloPasajero.manejadores.ConstructorPasaporte;
+import moduloPasajero.manejadores.leer;
+
 
 
 
@@ -36,34 +39,24 @@ import moduloPasajero.manejadores.ConstructorPasaporte;
  *
  * @author dell
  */
-public class ModuloPasajeros extends javax.swing.JFrame implements ActionListener{
+public class ModuloPasajeros extends javax.swing.JFrame {
     
     private EscritorDePasaporteBinarios escritorDePasaporteBinarios ;
-    private LectorDePasaporteBinarios lectorDePasaporteBinarios;
-    //private ManejadorFrameModuloPasajeros manejadorFrameModuloPasajeros;()
     private ConstructorPasaporte constructorPasaport; 
-    private LectorDepasaporteTxt lectorDepasaporteTxt;
-   private Vector listaPeliculas = new Vector();
-    private Aerolinea peliculaActual;
+    private LeerArchivosBinarios leerArchivosBinarios;
+    private LeerPasaporteBinario leerPasaporteBinario;
+    private LeerAerolineaBinaria leerAerolineaBinaria;
     
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        JComboBox comboBox = (JComboBox) e.getSource();
-        peliculaActual = (Aerolinea) comboBox.getSelectedItem();
-        System.out.println(peliculaActual.toString());
-        System.out.println(peliculaActual.getId());
-    }
     
     
     public ModuloPasajeros() {
         initComponents();
-        this.jPanel3.setVisible(false);
         this.setLocationRelativeTo(null);
         this.escritorDePasaporteBinarios=new EscritorDePasaporteBinarios();
-        this.lectorDePasaporteBinarios=new LectorDePasaporteBinarios();
-        //this.manejadorFrameModuloPasajeros=new ManejadorFrameModuloPasajeros(this);
         this.constructorPasaport=new ConstructorPasaporte(this);
-        this.lectorDepasaporteTxt=new LectorDepasaporteTxt();
+        this.leerArchivosBinarios=new LeerArchivosBinarios();
+        this.leerPasaporteBinario=new LeerPasaporteBinario();
+        this.leerAerolineaBinaria=new LeerAerolineaBinaria();
         
     }
     @SuppressWarnings("unchecked")
@@ -97,27 +90,9 @@ public class ModuloPasajeros extends javax.swing.JFrame implements ActionListene
         feEmisionTextField2 = new javax.swing.JTextField();
         apellidoTextField6 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        guardarTarjeta = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTextArea1 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
-        comboBoxListaPeliculas = comboBoxListaPeliculas = new JComboBox(listaPeliculas);
-        comboBoxListaPeliculas.addActionListener( this );
-        /*comboBoxListaPeliculas.addActionListener( new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                JComboBox comboBox = (JComboBox)e.getSource();
-                Pelicula item = (Pelicula)comboBox.getSelectedItem();
-                System.out.println( item.toString());
-                System.out.println( item.getId());
-            }
-        } );*/
-        comboBoxListaPeliculas.putClientProperty("JComboBox.isTableCellEditor", Boolean.TRUE);
         jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
@@ -131,15 +106,10 @@ public class ModuloPasajeros extends javax.swing.JFrame implements ActionListene
         jTextField23 = new javax.swing.JTextField();
         jTextField24 = new javax.swing.JTextField();
         comprarboleto = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        CargarTxt = new javax.swing.JButton();
 
         jLabel27.setText("jLabel27");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("No. Pasaporte");
@@ -193,6 +163,13 @@ public class ModuloPasajeros extends javax.swing.JFrame implements ActionListene
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(128, 128, 128)
+                        .addComponent(sexoComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 384, Short.MAX_VALUE)
+                        .addComponent(guardarPasaporte)
+                        .addGap(28, 28, 28))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,25 +190,15 @@ public class ModuloPasajeros extends javax.swing.JFrame implements ActionListene
                         .addGap(32, 32, 32)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
+                            .addComponent(jLabel2)
                             .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel2)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(128, 128, 128)
-                        .addComponent(sexoComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 147, Short.MAX_VALUE)
-                        .addComponent(guardarPasaporte)
-                        .addGap(28, 28, 28))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(millasTextField9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
-                            .addComponent(paisAcutalTextField8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
-                            .addComponent(feVencimientoTextField7, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(feEmisionTextField2, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jLabel11))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(millasTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(paisAcutalTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(feEmisionTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(feVencimientoTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -279,31 +246,9 @@ public class ModuloPasajeros extends javax.swing.JFrame implements ActionListene
 
         jTabbedPane3.addTab("comprar boleto", jPanel2);
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel12.setText("No. Tarjeta");
-
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel13.setText("Contraseña");
-
-        guardarTarjeta.setText("guardar");
-        guardarTarjeta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarTarjetaActionPerformed(evt);
-            }
-        });
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -312,7 +257,7 @@ public class ModuloPasajeros extends javax.swing.JFrame implements ActionListene
             }
         });
 
-        jButton2.setText("agregar a combobox");
+        jButton2.setText("leer Pasaporte");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -324,55 +269,30 @@ public class ModuloPasajeros extends javax.swing.JFrame implements ActionListene
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel12))
-                .addGap(26, 26, 26)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 339, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(62, 62, 62))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(guardarTarjeta)
-                                .addGap(49, 49, 49))))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(139, 139, 139)
-                        .addComponent(jButton2)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(comboBoxListaPeliculas, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(194, 194, 194))
+                        .addGap(159, 159, 159)
+                        .addComponent(jButton1)
+                        .addGap(124, 124, 124)
+                        .addComponent(jButton2)))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(comboBoxListaPeliculas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(18, 18, 18)
-                .addComponent(guardarTarjeta)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                .addGap(49, 49, 49))
+                .addGap(47, 47, 47)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jButton1))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jButton2)))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("Pasajero", jPanel3);
@@ -409,24 +329,6 @@ public class ModuloPasajeros extends javax.swing.JFrame implements ActionListene
             }
         });
 
-        jButton3.setText("jButton3");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
-
-        CargarTxt.setText("Cargar Txt");
-        CargarTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CargarTxtActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -454,47 +356,28 @@ public class ModuloPasajeros extends javax.swing.JFrame implements ActionListene
                         .addComponent(jLabel24)
                         .addGap(34, 34, 34)
                         .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addGap(227, 227, 227))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(CargarTxt)
-                        .addGap(56, 56, 56))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(comprarboleto)
-                        .addGap(91, 91, 91))))
+                .addContainerGap(575, Short.MAX_VALUE)
+                .addComponent(comprarboleto)
+                .addGap(91, 91, 91))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton3)
-                .addGap(3, 3, 3)
-                .addComponent(CargarTxt)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel22)
-                            .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel23)
-                            .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel24)
-                            .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(65, 65, 65)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel24)
+                    .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
                     .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -514,7 +397,7 @@ public class ModuloPasajeros extends javax.swing.JFrame implements ActionListene
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(28, 28, 28)
                 .addComponent(jTabbedPane3)
                 .addContainerGap())
         );
@@ -529,11 +412,6 @@ public class ModuloPasajeros extends javax.swing.JFrame implements ActionListene
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void guardarTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarTarjetaActionPerformed
-        IformacionPasajero tmp= new IformacionPasajero();
-        tmp.setVisible(true);
-    }//GEN-LAST:event_guardarTarjetaActionPerformed
-
     private void guardarPasaporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarPasaporteActionPerformed
        
        try{
@@ -542,28 +420,19 @@ public class ModuloPasajeros extends javax.swing.JFrame implements ActionListene
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
        
-       /*/Pasaporte nuevoPasaporte = constructorPasaport.cons();
-        JOptionPane.showMessageDialog(this, "Pasapor Guardado");
-        limpiarCampos();
-        ArrayList<Pasaporte> lispasaporte = new ArrayList<>();
-        lispasaporte.add(nuevoPasaporte);
-         try {
-            //guardar el Pasaporte en un archivo binario
-            this.escritorDePasaporteBinarios.guardarPasaporte(lispasaporte);
-        } catch (IOException ex) {
-            Logger.getLogger(ModuloPasajeros.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         JframeTarjeta tmp= new JframeTarjeta();
-                tmp.setVisible(true); 
-        */
+      
     }//GEN-LAST:event_guardarPasaporteActionPerformed
 
         
+    private void comprarboletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprarboletoActionPerformed
+            leer l=new leer();
+            l.buscar();
+    }//GEN-LAST:event_comprarboletoActionPerformed
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            //creo un arraylist de vehiculos y ejecuto el metodo leerVehiculos.
-            ArrayList<Pasaporte> lisPasaporte = this.lectorDePasaporteBinarios.leerPasaporte();
-            ManejadorDeTablaHistorial.llenarTabla(lisPasaporte, jTable1);
+         try {
+             this.leerAerolineaBinaria.leerVehiculos();
+            
         } catch (IOException ex) {
             Logger.getLogger(ModuloPasajeros.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -571,57 +440,31 @@ public class ModuloPasajeros extends javax.swing.JFrame implements ActionListene
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        JframeTarjeta t=new JframeTarjeta();
-        t.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void comprarboletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprarboletoActionPerformed
-        Asientos asientos =new Asientos();
-        asientos.setVisible(true);
-    }//GEN-LAST:event_comprarboletoActionPerformed
-
-    private void CargarTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarTxtActionPerformed
-           JFileChooser fileChosser = new JFileChooser();
-        int seleccion = fileChosser.showOpenDialog(this);
-        if (seleccion == JFileChooser.APPROVE_OPTION) {
-            //aqui selecciono y guardo el FILE que va a utilizar el FileReader
-            File fichero = fileChosser.getSelectedFile();
-            try {
-                ArrayList<Pasaporte> lisPasaporte = this.lectorDepasaporteTxt.leerFichero(fichero, this.jTextArea1);
-                this.escritorDePasaporteBinarios.guardarPasaporte(lisPasaporte);
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Error al leer el archivo");
-                ex.printStackTrace();
-            }
-        }
-    }//GEN-LAST:event_CargarTxtActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       listaPeliculas.addElement(new Aerolinea("sdfsdfsd", "patitio"));
+        try {
+            this.leerPasaporteBinario.leerVehiculos();
+        } catch (IOException ex) {
+            Logger.getLogger(ModuloPasajeros.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ModuloPasajeros.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
                
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CargarTxt;
     private javax.swing.JTextField apellidoTextField6;
-    private javax.swing.JComboBox<String> comboBoxListaPeliculas;
     private javax.swing.JButton comprarboleto;
     private javax.swing.JComboBox<String> estadoComboBox1;
     private javax.swing.JTextField feEmisionTextField2;
     private javax.swing.JTextField feNacimientoTextField3;
     private javax.swing.JTextField feVencimientoTextField7;
     private javax.swing.JButton guardarPasaporte;
-    private javax.swing.JButton guardarTarjeta;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -640,12 +483,8 @@ public class ModuloPasajeros extends javax.swing.JFrame implements ActionListene
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField21;
     private javax.swing.JTextField jTextField22;

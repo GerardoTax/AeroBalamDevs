@@ -13,7 +13,6 @@ import java.time.LocalDate;
  * @author dell
  */
 public class Pasaporte implements Serializable{
-    
     private int noPasaporte;
     private String  contrasella;
     private LocalDate fechaNacimiento;
@@ -137,9 +136,5 @@ public class Pasaporte implements Serializable{
     public void setMillasrecoridas(int millasrecoridas) {
         this.millasrecoridas = millasrecoridas;
     }
-    
-    public void sumarMillas(int cantidad){
-        this.millasrecoridas=this.millasrecoridas+cantidad;
-    }
-    
+
 }

@@ -35,13 +35,4 @@ public class Aerolinea implements Serializable {
     public void setNombreAeropuerto(String nombreAeropuerto) {
         this.nombreAeropuerto = nombreAeropuerto;
     }
-
-    public boolean getId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-       
-    
-    
-    
 }

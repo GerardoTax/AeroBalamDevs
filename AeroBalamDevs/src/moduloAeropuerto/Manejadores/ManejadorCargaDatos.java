@@ -20,7 +20,7 @@ import moduloAeropuerto.clases.estructuraDeArchivo.Aviones;
 import moduloAeropuerto.jFrame.FrameDatos;
 import moduloPasajero.Jframe.JframeTarjeta;
 import moduloPasajero.Jframe.ModuloPasajeros;
-import moduloPasajero.clases.Pasaporte;
+
 
 
 /**

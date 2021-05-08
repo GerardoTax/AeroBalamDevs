@@ -7,7 +7,6 @@ package moduloPasajero.Jframe;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import moduloPasajero.manejadores.ConstructorDeTarjeta;
 
 
 /**
@@ -16,11 +15,11 @@ import moduloPasajero.manejadores.ConstructorDeTarjeta;
  */
 public class JframeTarjeta extends javax.swing.JFrame {
 
-    private ConstructorDeTarjeta  constructorDeTarjeta ;
+  
     public JframeTarjeta() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.constructorDeTarjeta=new ConstructorDeTarjeta(this);
+        
     }
 
     
@@ -144,11 +143,7 @@ public class JframeTarjeta extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-          try{
-       constructorDeTarjeta.Guardar();
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -13,11 +13,13 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import moduloAeropuerto.archivosBinarios.EscritorDePasaporteBinarios;
 import moduloAeropuerto.clases.ExcepcionVentana;
-import moduloPasajero.Jframe.JframeTarjeta;
+import moduloAeropuerto.clases.estructuraDeArchivo.Pasaporte;
 import moduloPasajero.Jframe.ModuloPasajeros;
-import moduloPasajero.archivos.EscritorDePasaporteBinarios;
-import moduloPasajero.clases.Pasaporte;
+
+
+
 
 
 
@@ -27,7 +29,7 @@ import moduloPasajero.clases.Pasaporte;
  */
 public class ConstructorPasaporte {
     private ModuloPasajeros moduloPasajeros;
-    private EscritorDePasaporteBinarios escritorDePasaporteBinarios ;
+    private EscritorDePasaporteBinarios escritorDePasaporteBinarios;
     
     
     public ConstructorPasaporte(ModuloPasajeros moduloPasajeros){
@@ -96,7 +98,6 @@ public class ConstructorPasaporte {
     }
     public void guardarDatos() throws ExcepcionVentana{
         validarFormulario(); 
-        System.out.println("hola");
         Pasaporte nuevoPasaporte = cons();
         JOptionPane.showMessageDialog(null, "Pasapor Guardado");
         limpiarCampos();
@@ -108,9 +109,6 @@ public class ConstructorPasaporte {
         } catch (IOException ex) {
             Logger.getLogger(ModuloPasajeros.class.getName()).log(Level.SEVERE, null, ex);
         }
-         JframeTarjeta tmp= new JframeTarjeta();
-                tmp.setVisible(true); 
-            moduloPasajeros.setVisible(false);
             
     }
  

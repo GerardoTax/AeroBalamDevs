@@ -65,6 +65,11 @@ public class Aviones extends Aerolinea{
         this.consumoPorMillas = consumoPorMillas;
     }
 
+    @Override
+    public String toString() {
+        return "Aviones{" + "codigoAvion=" + codigoAvion + ", capacidadPasajeros=" + capacidadPasajeros + ", capacidadGasolina=" + capacidadGasolina + ", consumoPorMillas=" + consumoPorMillas + '}';
+    }
+
   
     
     
