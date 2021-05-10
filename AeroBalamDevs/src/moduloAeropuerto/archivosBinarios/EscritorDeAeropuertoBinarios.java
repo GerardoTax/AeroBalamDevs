@@ -6,12 +6,15 @@
 package moduloAeropuerto.archivosBinarios;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import moduloAeropuerto.clases.estructuraDeArchivo.Aerolinea;
 import moduloAeropuerto.clases.estructuraDeArchivo.Aeropuerto;
 
 
@@ -38,5 +41,19 @@ public class EscritorDeAeropuertoBinarios implements Serializable{
           salida.close();
         }
     }
-    
+    public ArrayList<Aeropuerto> leerAeropuertos() throws FileNotFoundException,IOException,ClassNotFoundException{
+        ArrayList<Aeropuerto> listaAeropuerto= new ArrayList<>();
+        String[]  archivos=this.FILE_AEROPUERTO.list();
+        ObjectInputStream lector;   
+        System.out.println("Archivos:"+archivos.length+" ------Aeropuerto");
+        for (int i = 0; i < archivos.length; i++) {
+            String archivo = archivos[i];
+            lector = new ObjectInputStream(new FileInputStream(this.FILE_AEROPUERTO+"/"+archivo));
+            Aeropuerto v =(Aeropuerto)lector.readObject();
+            System.out.println( "Nombre  "+v.getNombreAeropuerto());
+            listaAeropuerto.add(v);
+            lector.close();
+        }
+        return listaAeropuerto;
+    }
 }

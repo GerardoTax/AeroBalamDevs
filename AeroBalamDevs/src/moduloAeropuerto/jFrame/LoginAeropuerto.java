@@ -6,11 +6,19 @@
 package moduloAeropuerto.jFrame;
 
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import moduloAeropuerto.Manejadores.ManejadorLogin;
+import moduloAeropuerto.archivosBinarios.LectorEscrituraBinariosPersonal;
+import moduloAeropuerto.clases.ExcepcionVentana;
+import moduloAeropuerto.clases.estructuraDeArchivo.Personal;
 import moduloPasajero.Jframe.Principal;
 
 /**
@@ -19,10 +27,15 @@ import moduloPasajero.Jframe.Principal;
  */
 public class LoginAeropuerto extends javax.swing.JFrame {
     private ManejadorLogin manejadorLogin;
+    private  LectorEscrituraBinariosPersonal lectorEscrituraBinariosPersonal;
+    private ArrayList<Personal>  lispersona;
     public LoginAeropuerto() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.manejadorLogin=new ManejadorLogin(this);
+        this.lectorEscrituraBinariosPersonal=new  LectorEscrituraBinariosPersonal();
+        cargar();
+        this.manejadorLogin=new ManejadorLogin(this,this.lispersona);
+         
     }
 
   
@@ -83,9 +96,14 @@ public class LoginAeropuerto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        manejadorLogin.verificadorUsuario();
+       
         
-        
+        try {
+            this.manejadorLogin.Cargarventana();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -140,5 +158,21 @@ public class LoginAeropuerto extends javax.swing.JFrame {
     public void setUsuarioTextField1(JTextField usuarioTextField1) {
         this.usuarioTextField1 = usuarioTextField1;
     }
+    public void cargar(){
+    
+         try {
+            lispersona= this.lectorEscrituraBinariosPersonal.leerPersonal();
+           System.out.println("*********");
+           for(int i=0;i<lispersona.size();i++){
+            System.out.println(lispersona.get(i).getUsuario()+"   "+lispersona.get(i).getPuesto()+"   "+lispersona.get(i).getContrasella()); 
+                
+           }
+         } catch (IOException ex) {
+             Logger.getLogger(FrameAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (ClassNotFoundException ex) {
+             Logger.getLogger(FrameAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    }
+    
     
 }

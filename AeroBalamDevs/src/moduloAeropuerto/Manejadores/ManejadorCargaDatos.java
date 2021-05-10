@@ -13,10 +13,12 @@ import javax.swing.JOptionPane;
 import moduloAeropuerto.archivosBinarios.EscritorDeAerolineaBinarios;
 import moduloAeropuerto.archivosBinarios.EscritorDeAeropuertoBinarios;
 import moduloAeropuerto.archivosBinarios.EscritorDeAvionesBinarios;
+import moduloAeropuerto.archivosBinarios.LectorEscrituraBinariosPersonal;
 import moduloAeropuerto.clases.ExcepcionVentana;
 import moduloAeropuerto.clases.estructuraDeArchivo.Aerolinea;
 import moduloAeropuerto.clases.estructuraDeArchivo.Aeropuerto;
 import moduloAeropuerto.clases.estructuraDeArchivo.Aviones;
+import moduloAeropuerto.clases.estructuraDeArchivo.Personal;
 import moduloAeropuerto.jFrame.FrameDatos;
 import moduloPasajero.Jframe.JframeTarjeta;
 import moduloPasajero.Jframe.ModuloPasajeros;
@@ -32,12 +34,14 @@ public class ManejadorCargaDatos {
     private EscritorDeAeropuertoBinarios escritorDeAeropuertoBinarios;
     private EscritorDeAerolineaBinarios escritorDeAerolineaBinarios;
     private EscritorDeAvionesBinarios escritorDeAvionesBinarios;
+    private LectorEscrituraBinariosPersonal lectorEscrituraBinariosPersonal;
 
     public ManejadorCargaDatos(FrameDatos frameDatos) {
        this.frameDatos=frameDatos;
        this.escritorDeAeropuertoBinarios= new EscritorDeAeropuertoBinarios();
        this.escritorDeAerolineaBinarios=new EscritorDeAerolineaBinarios();
        this.escritorDeAvionesBinarios=new EscritorDeAvionesBinarios();
+       this.lectorEscrituraBinariosPersonal=new LectorEscrituraBinariosPersonal();
     }
     
     public void validarCamposVacios(String campo, String tipoDato) throws ExcepcionVentana{
@@ -149,6 +153,7 @@ public class ManejadorCargaDatos {
         }
     
     }
+        //vlidar campos para luego guardar 
     public void ValidarAviones() throws ExcepcionVentana{
        validarCamposVacios(frameDatos.getjTextField3().getText(),"Aeropuerto");
        validarCamposVacios(frameDatos.getjTextField7().getText(),"Aeropuerto Actual");
@@ -162,7 +167,7 @@ public class ManejadorCargaDatos {
        convertir(frameDatos.getjTextField11().getText(),"Consumo de millas");
  
     }
-    
+    // convierte un String a un int pero no es statico 
      public  int  convertir(String campo ,String tipoDato) throws ExcepcionVentana{
         try{
            int resultado=Integer.valueOf(campo);
@@ -180,6 +185,7 @@ public class ManejadorCargaDatos {
        }
         
      }
+     //costrucator de Aviones 
       public static Aviones construirAviones(String [] campos){
         Aviones aviones=null;
         aviones=new Aviones(campos[0],campos[1],con(campos[2]),con(campos[3]),con(campos[4]),con(campos[5]));  
@@ -187,11 +193,48 @@ public class ManejadorCargaDatos {
         return aviones;
     
     }
+      // convierte de un string a un int 
     public static int con(String campo){
         int resultado;
         resultado = Integer.valueOf(campo);
         return resultado;
         
     }
+    
+   public void validarPersonal() throws ExcepcionVentana{
+       
+       validarCamposVacios(frameDatos.getUsuario().getText(),"Usuariio");
+       validarCamposVacios(frameDatos.getContrasella().getText(),"Contraseña");
+       convertir(frameDatos.getContrasella().getText(),"Contraseña");  
+   }
+   
+   public static Personal construirPersonal(String [] campos){
+        Personal personal=null;
+        personal=new Personal(campos[0],con(campos[1]),campos[2]);  
+         
+        return personal;
+    
+    }
+   public void guardarPersonal() throws ExcepcionVentana{
+         validarPersonal();
+         String usuario=frameDatos.getUsuario().getText();
+         String contraseña=frameDatos.getContrasella().getText();
+         String area= (String) frameDatos.getArea().getSelectedItem();
+         String campo[]={usuario,contraseña,area};
+         Personal nuevoPersonal = construirPersonal(campo);
+       JOptionPane.showMessageDialog(null, "Personal Guardado");
+        frameDatos.getUsuario().setText("");
+        frameDatos.getContrasella().setText("");
+       ArrayList<Personal> lisPersonal = new ArrayList<>();
+       lisPersonal.add(nuevoPersonal);
+       try {
+            //guardar el Pasaporte en un archivo binario
+            this.lectorEscrituraBinariosPersonal.guardarPersonal(lisPersonal);
+        } catch (IOException ex) {
+            Logger.getLogger(ModuloPasajeros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+         
+   }
+       
 }
-

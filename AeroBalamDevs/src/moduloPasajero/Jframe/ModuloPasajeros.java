@@ -24,7 +24,6 @@ import javax.swing.JTextField;
 import moduloAeropuerto.Manejadores.LeerArchivosBinarios;
 import moduloAeropuerto.archivosBinarios.EscritorDePasaporteBinarios;
 import moduloAeropuerto.archivosBinarios.LeerAerolineaBinaria;
-import moduloAeropuerto.archivosBinarios.LeerPasaporteBinario;
 import moduloAeropuerto.clases.estructuraDeArchivo.Aerolinea;
 import moduloAeropuerto.clases.estructuraDeArchivo.Aviones;
 import moduloAeropuerto.clases.estructuraDeArchivo.Pasaporte;
@@ -44,7 +43,6 @@ public class ModuloPasajeros extends javax.swing.JFrame {
     private EscritorDePasaporteBinarios escritorDePasaporteBinarios ;
     private ConstructorPasaporte constructorPasaport; 
     private LeerArchivosBinarios leerArchivosBinarios;
-    private LeerPasaporteBinario leerPasaporteBinario;
     private LeerAerolineaBinaria leerAerolineaBinaria;
     
     
@@ -55,7 +53,6 @@ public class ModuloPasajeros extends javax.swing.JFrame {
         this.escritorDePasaporteBinarios=new EscritorDePasaporteBinarios();
         this.constructorPasaport=new ConstructorPasaporte(this);
         this.leerArchivosBinarios=new LeerArchivosBinarios();
-        this.leerPasaporteBinario=new LeerPasaporteBinario();
         this.leerAerolineaBinaria=new LeerAerolineaBinaria();
         
     }
@@ -442,7 +439,7 @@ public class ModuloPasajeros extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-            this.leerPasaporteBinario.leerVehiculos();
+            this.escritorDePasaporteBinarios.leerPasaporte();
         } catch (IOException ex) {
             Logger.getLogger(ModuloPasajeros.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {

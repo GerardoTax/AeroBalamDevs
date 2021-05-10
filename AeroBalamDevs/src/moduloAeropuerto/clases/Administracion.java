@@ -5,18 +5,18 @@
  */
 package moduloAeropuerto.clases;
 
+import moduloAeropuerto.jFrame.FrameAdministrador;
+
 /**
  *
  * @author dell
  */
 public class Administracion {
-    private  String Usuairo;
-    private int contrasella;
-    public Administracion(){
     
+    private FrameAdministrador frameAdministrador;
+  
+    public Administracion(FrameAdministrador frameAdministrador){
+            this.frameAdministrador=frameAdministrador;
     }
     
-    public void construiAviones(int fila,int columna){
-    
-    }
 }
