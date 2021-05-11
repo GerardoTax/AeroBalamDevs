@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
 import moduloAeropuerto.clases.ExcepcionVentana;
 import moduloAeropuerto.clases.estructuraDeArchivo.Personal;
 import moduloAeropuerto.jFrame.Avion;
-import moduloAeropuerto.jFrame.FrameAdministrador;
 import moduloAeropuerto.jFrame.FrameDatos;
 import moduloAeropuerto.jFrame.FrameGerencia;
 import moduloAeropuerto.jFrame.FrameOperador;
@@ -23,6 +22,7 @@ import moduloAeropuerto.jFrame.LoginAeropuerto;
 public class ManejadorLogin {
     private LoginAeropuerto loginAeropuerto;
     private ArrayList<Personal>  lispersona;
+    private int numero;
     
     public ManejadorLogin(LoginAeropuerto loginAeropuerto, ArrayList<Personal>  lispersona ){
         this.loginAeropuerto=loginAeropuerto;
@@ -68,7 +68,7 @@ public class ManejadorLogin {
                 String usu=lispersona.get(i).getUsuario();
                 String areaa=lispersona.get(i).getPuesto();
             if(usu.equals(usuario)){  
-                
+                 this.setNumero(1);
                 if(cont.equals(contraseña)){
                     
                     if(areaa.equals(area)){
@@ -95,11 +95,19 @@ public class ManejadorLogin {
                     }
     
             
-            }
+            }  this.setNumero(0);
             
             
-        }
+        } if(this.getNumero()==0){JOptionPane.showMessageDialog(null, "No Existe en el sistema");}
     
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
     
 }

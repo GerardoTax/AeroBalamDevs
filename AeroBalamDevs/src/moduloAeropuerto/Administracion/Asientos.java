@@ -5,8 +5,6 @@
  */
 package moduloAeropuerto.Administracion;
 
-import moduloAeropuerto.clases.*;
-import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,11 +14,13 @@ import javax.swing.JButton;
  *
  * @author dell
  */
-public class Asientos extends JButton  implements ActionListener{
+
+   public class Asientos extends JButton  implements ActionListener{
      
     public Asientos(int posx, int posy ,int ancho  ,int alto   ){
-    super.setBounds(posx, posy, ancho, alto);
-    addActionListener(this);
+        super.setBounds(posx, posy, ancho, alto);
+        addActionListener(this);
+         setBackground(Color.GREEN);
     
     }
     public void posicion(int x,int y){
@@ -30,9 +30,8 @@ public class Asientos extends JButton  implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        setBackground(Color.PINK);
+        setBackground(Color.RED);
         
     }
-   
     
 }

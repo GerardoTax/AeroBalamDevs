@@ -50,6 +50,13 @@ public class ManejadorCargaDatos {
         }
     
     }
+     public void ValidarAeropuerto() throws ExcepcionVentana {
+       //comprovar si el compo esta vacio
+       validarCamposVacios(frameDatos.getNameAeropuerto().getText(),"Nombre de Aerolinea");
+       validarCamposVacios(frameDatos.getCiudad().getText(),"Nombre de Ciudad");
+       validarCamposVacios(frameDatos.getPais().getText(),"Nombre de Pais ");
+   }
+     
    public void guardarAeropuerto() throws ExcepcionVentana{
        ValidarAeropuerto();
        String nombre=frameDatos.getNameAeropuerto().getText() ;
@@ -59,6 +66,7 @@ public class ManejadorCargaDatos {
       
        //creamos nuestro aeropuerto  pasando el vector campos
        Aeropuerto nuevoaeropuerto = construirAeropuerto(campos);
+           
        JOptionPane.showMessageDialog(null, "Aeropuerto Guardado");
        limbiarCampos();
        ArrayList<Aeropuerto> lisaeropuerto = new ArrayList<>();
@@ -70,12 +78,7 @@ public class ManejadorCargaDatos {
             Logger.getLogger(ModuloPasajeros.class.getName()).log(Level.SEVERE, null, ex);
         }
    }
-   public void ValidarAeropuerto() throws ExcepcionVentana {
-       //comprovar si el compo esta vacio
-       validarCamposVacios(frameDatos.getNameAeropuerto().getText(),"Nombre de Aerolinea");
-       validarCamposVacios(frameDatos.getCiudad().getText(),"Nombre de Ciudad");
-       validarCamposVacios(frameDatos.getPais().getText(),"Nombre de Pais ");
-   }
+  
    
    public static Aeropuerto construirAeropuerto(String[] campos) {
        //vamos a contruir un Aerpuerto y retornar Aeropuerto
@@ -100,14 +103,13 @@ public class ManejadorCargaDatos {
     }
     public void guardarAerolinea() throws ExcepcionVentana{
         ValidarAerlinea();
-        String nombreAeropuerto=frameDatos.getNombreAeropuerto().getText();
+        String nombreAeropuerto= (String)frameDatos.getjComboBox1().getSelectedItem();
         String nombreAerolinea=frameDatos.getNombreAerolinea().getText();
-         String campos[] = {nombreAeropuerto, nombreAeropuerto};
+         String campos[] = {nombreAeropuerto,nombreAerolinea};
       
        //creamos nuestro aerolinea  pasando el vector campos
        Aerolinea nuevaAerolinea = construirAerolinea(campos);
-       JOptionPane.showMessageDialog(null, "Aerolinea guardada Guardado");
-        frameDatos.getNombreAeropuerto().setText("");
+       JOptionPane.showMessageDialog(null, "Aerolinea  Guardado");
         frameDatos.getNombreAerolinea().setText("");
        ArrayList<Aerolinea> lisaerolinea = new ArrayList<>();
        lisaerolinea.add(nuevaAerolinea);
@@ -120,14 +122,13 @@ public class ManejadorCargaDatos {
    }
     
     public void ValidarAerlinea() throws ExcepcionVentana{
-       validarCamposVacios(frameDatos.getNombreAeropuerto().getText(),"Aeropuerto");
        validarCamposVacios(frameDatos.getNombreAerolinea().getText(),"Aerolinea");
     }
     
     public void GuardarAviones() throws ExcepcionVentana{
         ValidarAviones();
-        String aerolinea= frameDatos.getjTextField3().getText();
-        String aeropuertoActual=frameDatos.getjTextField7().getText();
+        String aerolinea= (String) frameDatos.getjComboBoxAerolinea().getSelectedItem();
+        String aeropuertoActual= (String)frameDatos.getjComboBoAeropuerto().getSelectedItem();
         String codigoAvion= frameDatos.getjTextField8().getText();
         String capasidadPasajeros=frameDatos.getjTextField9().getText();
         String capasidadGasolina=frameDatos.getjTextField10().getText();
@@ -137,8 +138,6 @@ public class ManejadorCargaDatos {
        //creamos nuestro aerolinea  pasando el vector campos
        Aviones nuevoAviones = construirAviones(campos);
        JOptionPane.showMessageDialog(null, "Aerolinea guardada Guardado");
-        frameDatos.getjTextField3().setText("");
-        frameDatos.getjTextField7().setText("");
         frameDatos.getjTextField8().setText("");
         frameDatos.getjTextField9().setText("");
         frameDatos.getjTextField10().setText("");
@@ -155,8 +154,6 @@ public class ManejadorCargaDatos {
     }
         //vlidar campos para luego guardar 
     public void ValidarAviones() throws ExcepcionVentana{
-       validarCamposVacios(frameDatos.getjTextField3().getText(),"Aeropuerto");
-       validarCamposVacios(frameDatos.getjTextField7().getText(),"Aeropuerto Actual");
        validarCamposVacios(frameDatos.getjTextField8().getText(),"Codigo Avion");
        validarCamposVacios(frameDatos.getjTextField9().getText(),"Capasidad Pasajeros");
        validarCamposVacios(frameDatos.getjTextField10().getText(),"Capasidad de Gasolina");
@@ -232,9 +229,11 @@ public class ManejadorCargaDatos {
             this.lectorEscrituraBinariosPersonal.guardarPersonal(lisPersonal);
         } catch (IOException ex) {
             Logger.getLogger(ModuloPasajeros.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    
-         
+        }     
+   }
+   public int retornarCapacidadAvion() throws ExcepcionVentana{
+    int resultado=convertir(frameDatos.getjTextField9().getText(),"Capasidad Pasajeros");
+        return resultado;
    }
        
 }

@@ -25,9 +25,9 @@ public class EscritorDePasaporteBinarios {
      
     public static final File  FILE_PASAPORTE= new File("/Users/dell/Desktop/AeroBalamDevs/AeroBalamDevs/src/moduloAeropuerto/GuardarArhivosBinarios/ArchivosBinariosPasaporte");
     
-    public void guardarPasaporte(ArrayList<Pasaporte> pasaporte) throws IOException,FileNotFoundException{
+    public void guardarPasaporte(ArrayList<Pasaporte> lispasaporte) throws IOException,FileNotFoundException{
          
-        for (Pasaporte pasaportes : pasaporte) {
+        for (Pasaporte pasaportes : lispasaporte) {
             // FileOutputStream para escribir flujos de byte
             //ObjectOutputStream  para contruir objetos
           FileOutputStream  fileOutput = new FileOutputStream(FILE_PASAPORTE+"/"+pasaportes.getNoPasaporte());
@@ -46,7 +46,7 @@ public class EscritorDePasaporteBinarios {
             String archivo = archivos[i];
             lector = new ObjectInputStream(new FileInputStream(this.FILE_PASAPORTE+"/"+archivo));
             Pasaporte pasa =(Pasaporte)lector.readObject();
-            System.out.println( "Nombre  "+pasa.getNombre());
+            //System.out.println( "Nombre  "+pasa.getNombre()+" fecha nacimiento "+pasa.getFechaNacimiento());
             listaPasaporte.add(pasa);
             lector.close();
         }

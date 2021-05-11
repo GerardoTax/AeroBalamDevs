@@ -160,18 +160,19 @@ public class LoginAeropuerto extends javax.swing.JFrame {
     }
     public void cargar(){
     
-         try {
-            lispersona= this.lectorEscrituraBinariosPersonal.leerPersonal();
+             try {
+                 lispersona= this.lectorEscrituraBinariosPersonal.leerPersonal();
+             } catch (IOException ex) {
+                 Logger.getLogger(LoginAeropuerto.class.getName()).log(Level.SEVERE, null, ex);
+             } catch (ClassNotFoundException ex) {
+                 Logger.getLogger(LoginAeropuerto.class.getName()).log(Level.SEVERE, null, ex);
+             }
            System.out.println("*********");
            for(int i=0;i<lispersona.size();i++){
             System.out.println(lispersona.get(i).getUsuario()+"   "+lispersona.get(i).getPuesto()+"   "+lispersona.get(i).getContrasella()); 
                 
            }
-         } catch (IOException ex) {
-             Logger.getLogger(FrameAdministrador.class.getName()).log(Level.SEVERE, null, ex);
-         } catch (ClassNotFoundException ex) {
-             Logger.getLogger(FrameAdministrador.class.getName()).log(Level.SEVERE, null, ex);
-         }
+         
     }
     
     
