@@ -28,7 +28,7 @@ public class EscritorDeAeropuertoBinarios implements Serializable{
     
     
     
-    public static final File  FILE_AEROPUERTO= new File("/Users/dell/Desktop/AeroBalamDevs/AeroBalamDevs/src/moduloAeropuerto/GuardarArhivosBinarios/ArchivosBinarioAeropuertos");
+    public static final File  FILE_AEROPUERTO= new File("/Users/dell/Desktop/AeroBalamDevs/AeroBalamDevs/GuardarArhivosBinarios/ArchivosBinarioAeropuertos");
     
     public void guardarAeropuerto(ArrayList<Aeropuerto> lisAeropuerto) throws IOException,FileNotFoundException{
          

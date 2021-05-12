@@ -23,7 +23,7 @@ import moduloAeropuerto.clases.estructuraDeArchivo.Pasaporte;
  */
 public class EscritorDePasaporteBinarios {
      
-    public static final File  FILE_PASAPORTE= new File("/Users/dell/Desktop/AeroBalamDevs/AeroBalamDevs/src/moduloAeropuerto/GuardarArhivosBinarios/ArchivosBinariosPasaporte");
+    public static final File  FILE_PASAPORTE= new File("/Users/dell/Desktop/AeroBalamDevs/AeroBalamDevs/GuardarArhivosBinarios/ArchivosBinariosPasaporte");
     
     public void guardarPasaporte(ArrayList<Pasaporte> lispasaporte) throws IOException,FileNotFoundException{
          

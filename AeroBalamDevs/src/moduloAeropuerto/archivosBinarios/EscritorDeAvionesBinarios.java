@@ -22,7 +22,7 @@ import moduloAeropuerto.clases.estructuraDeArchivo.Aviones;
  */
 public class EscritorDeAvionesBinarios {
      
-    public static final File  FILE_AVIONES= new File("/Users/dell/Desktop/AeroBalamDevs/AeroBalamDevs/src/moduloAeropuerto/GuardarArhivosBinarios/ArchivosBinariosAviones");
+    public static final File  FILE_AVIONES= new File("/Users/dell/Desktop/AeroBalamDevs/AeroBalamDevs/GuardarArhivosBinarios/ArchivosBinariosAviones");
     
     public void guardarAeropuerto(ArrayList<Aviones> lisAviones) throws IOException,FileNotFoundException{
          

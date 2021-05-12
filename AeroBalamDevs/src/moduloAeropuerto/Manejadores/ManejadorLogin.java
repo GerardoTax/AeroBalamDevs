@@ -73,9 +73,9 @@ public class ManejadorLogin {
                     
                     if(areaa.equals(area)){
                          if(area.equals("Administracion")){
-                             FrameDatos frameDatos=new FrameDatos();
-                             frameDatos.setVisible(true);
-                             loginAeropuerto.dispose();
+                              FrameDatos frameDatos=new FrameDatos();
+                              frameDatos.setVisible(true);
+                              loginAeropuerto.dispose();
                          }
                          else if(area.equals("Operador")){
                             FrameOperador frameOperador=new FrameOperador();
@@ -94,11 +94,16 @@ public class ManejadorLogin {
                         this.loginAeropuerto.getPasswordField1().setText("");
                     }
     
+               return;
+            }  
+            this.setNumero(0);
             
-            }  this.setNumero(0);
             
-            
-        } if(this.getNumero()==0){JOptionPane.showMessageDialog(null, "No Existe en el sistema");}
+        } if(this.getNumero()==0){
+             JOptionPane.showMessageDialog(null, "No Existe en el sistema");
+             loginAeropuerto.getUsuarioTextField1().setText("");
+             loginAeropuerto.getPasswordField1().setText("");
+        }
     
     }
 

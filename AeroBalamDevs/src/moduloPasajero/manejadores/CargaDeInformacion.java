@@ -92,6 +92,15 @@ public class CargaDeInformacion {
     public void setEstado(int estado) {
         this.estado = estado;
     }
+
+    public ArrayList<Pasaporte> getLisPasaporte() {
+        leerPasaporte();
+        return lisPasaporte;
+    }
+
+    public void setLisPasaporte(ArrayList<Pasaporte> lisPasaporte) {
+        this.lisPasaporte = lisPasaporte;
+    }
      
    
 }

@@ -25,7 +25,7 @@ import moduloAeropuerto.clases.estructuraDeArchivo.Personal;
 public class EscritorDeAerolineaBinarios implements Serializable{
     
    
-    public static final File FILE_AEROLINEA = new File("/Users/dell/Desktop/AeroBalamDevs/AeroBalamDevs/src/moduloAeropuerto/GuardarArhivosBinarios/ArchivosBianriosAerolinea");
+    public static final File FILE_AEROLINEA = new File("/Users/dell/Desktop/AeroBalamDevs/AeroBalamDevs/GuardarArhivosBinarios/ArchivosBianriosAerolinea");
     
     public void guardarAerolinea(ArrayList<Aerolinea> lisAerolinea) throws IOException,FileNotFoundException{
          
