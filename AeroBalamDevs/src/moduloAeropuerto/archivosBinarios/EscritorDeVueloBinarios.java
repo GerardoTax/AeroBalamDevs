@@ -20,9 +20,9 @@ import moduloAeropuerto.clases.estructuraDeArchivo.Vuelo;
  */
 public class EscritorDeVueloBinarios {
      
-    public static final File  FILE_VUELO= new File("/Users/dell/Desktop/AeroBalamDevs/AeroBalamDevs/src/moduloAeropuerto/GuardarArhivosBinarios/ArchivosBinario}Vuelos");
+    public static final File  FILE_VUELO= new File("/Users/dell/Desktop/AeroBalamDevs/AeroBalamDevs/GuardarArhivosBinarios/ArchivosBinariosVuelos");
     
-    public void guardarAeropuerto(ArrayList<Vuelo> lisVuelo) throws IOException,FileNotFoundException{
+    public void guardarVuelos(ArrayList<Vuelo> lisVuelo) throws IOException,FileNotFoundException{
          
         for (Vuelo vuelos : lisVuelo) {
             // FileOutputStream para escribir flujos de byte

@@ -11,9 +11,13 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static moduloAeropuerto.Manejadores.ManejadorCargaDatos.con;
 import moduloAeropuerto.archivosBinarios.EscritorDePasaporteBinarios;
 import moduloAeropuerto.clases.ExcepcionVentana;
 import moduloAeropuerto.clases.estructuraDeArchivo.Pasaporte;
+import moduloAeropuerto.clases.estructuraDeArchivo.RenovacionPasaporte;
+import moduloAeropuerto.clases.estructuraDeArchivo.Reservacion;
+import moduloAeropuerto.clases.estructuraDeArchivo.Vuelo;
 import moduloPasajero.Jframe.ModuloPasajeros;
 
 /**
@@ -121,6 +125,7 @@ public class ManejadorDeUsuario {
          return p;
     }
     
+    //contructor para leer texto
     public static Pasaporte construirpasaporte(String[] campos) {
       Pasaporte p=null;
       p=new Pasaporte (convertirint(campos[0]),campos[1],darFormatoAFecha(campos[2]),campos[3],campos[4],campos[5],campos[6],campos[7],darFormatoAFecha(campos[8]),darFormatoAFecha(campos[9]),campos[10],convertirint(campos[11]));     
@@ -154,5 +159,24 @@ public class ManejadorDeUsuario {
         return numero;
     }
     
+   public static Vuelo construirvuelos(String [] campos){
+        Vuelo vuelo=null;
+        vuelo=new Vuelo(convertirint(campos[0]),convertirint(campos[1]),campos[2],campos[3],convertirint(campos[4]),darFormatoAFecha(campos[5]));  
+        return vuelo;
+    
+    }
    
+   public static RenovacionPasaporte contruirRenovacion(String [] campos){
+       
+       RenovacionPasaporte renovacion= null;
+       renovacion = new RenovacionPasaporte(convertirint(campos[0]),darFormatoAFecha(campos[1]));
+       return renovacion;
+   }
+   
+   public static Reservacion construirReservacion(String [] campos){
+       Reservacion reservacion=null;
+       reservacion=new Reservacion(convertirint(campos[0]),convertirint(campos[1]),convertirint(campos[2]),convertirint(campos[3]));
+       return reservacion;
+   
+   }
 }

@@ -18,7 +18,9 @@ import moduloAeropuerto.clases.ExcepcionVentana;
 import moduloAeropuerto.clases.estructuraDeArchivo.Aerolinea;
 import moduloAeropuerto.clases.estructuraDeArchivo.Aeropuerto;
 import moduloAeropuerto.clases.estructuraDeArchivo.Aviones;
+import moduloAeropuerto.clases.estructuraDeArchivo.Distancia;
 import moduloAeropuerto.clases.estructuraDeArchivo.Personal;
+import moduloAeropuerto.clases.estructuraDeArchivo.Vuelo;
 import moduloAeropuerto.jFrame.FrameDatos;
 import moduloPasajero.Jframe.JframeTarjeta;
 import moduloPasajero.Jframe.ModuloPasajeros;
@@ -236,4 +238,11 @@ public class ManejadorCargaDatos {
         return resultado;
    }
        
+   public static Distancia construirDistancica(String [] campos){
+       Distancia distancia=null; 
+       distancia=new Distancia(campos[0],campos[1],con(campos[2]));
+       return distancia;
+   }
+   
+   
 }

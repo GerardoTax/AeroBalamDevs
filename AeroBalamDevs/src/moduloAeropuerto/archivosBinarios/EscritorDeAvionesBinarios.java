@@ -39,12 +39,12 @@ public class EscritorDeAvionesBinarios {
         ArrayList<Aviones> lisAviones = new ArrayList<>();
         String[] archivos=EscritorDeAvionesBinarios.FILE_AVIONES.list();
         ObjectInputStream lector;   
-        System.out.println("Archivos:"+archivos.length);
+        System.out.println("Archivos:"+archivos.length+"--------Aviones");
         for (int i = 0; i < archivos.length; i++) {
             String archivo = archivos[i];
             lector = new ObjectInputStream(new FileInputStream(EscritorDeAvionesBinarios.FILE_AVIONES+"/"+archivo));
             Aviones a =(Aviones)lector.readObject();
-            System.out.println(a);
+            System.out.println(a.getCodigoAvion());
             lector.close();
         }
         return lisAviones;

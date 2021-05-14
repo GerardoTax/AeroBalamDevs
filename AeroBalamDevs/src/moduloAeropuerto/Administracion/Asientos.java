@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import moduloPasajero.Jframe.JframeTarjeta;
 
 /**
  *
@@ -31,6 +32,9 @@ import javax.swing.JButton;
     @Override
     public void actionPerformed(ActionEvent e) {
         setBackground(Color.RED);
+         JframeTarjeta tmp= new JframeTarjeta();
+         tmp.setVisible(true);
+         
         
     }
     

@@ -11,25 +11,25 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import moduloAeropuerto.clases.estructuraDeArchivo.Aeropuerto;
-import moduloAeropuerto.clases.estructuraDeArchivo.Distancia;
+import moduloAeropuerto.clases.estructuraDeArchivo.Reservacion;
+import moduloAeropuerto.clases.estructuraDeArchivo.Vuelo;
 
 /**
  *
  * @author dell
  */
-public class EscritorDeDistanciaBinarios {
-     
-    public static final File  FILE_DISTANCIA= new File("/Users/dell/Desktop/AeroBalamDevs/AeroBalamDevs/GuardarArhivosBinarios/ArchivosBinariosDistancia");
+public class LectorEscritorReservacion {
     
-    public void guardarDistancia(ArrayList<Distancia> lisDistancia) throws IOException,FileNotFoundException{
+    public static final File  FILE_RESERVACION= new File("/Users/dell/Desktop/AeroBalamDevs/AeroBalamDevs/GuardarArhivosBinarios/ArhivosBinariosReservacion");
+    
+    public void guardarReservacion(ArrayList<Reservacion> lisReservacion) throws IOException,FileNotFoundException{
          
-        for (Distancia distancias : lisDistancia) {
+        for (Reservacion reservacion : lisReservacion) {
             // FileOutputStream para escribir flujos de byte
             //ObjectOutputStream  para contruir objetos
-          FileOutputStream  fileOutput = new FileOutputStream(FILE_DISTANCIA+"/"+distancias.getCantidadMillas());
+          FileOutputStream  fileOutput = new FileOutputStream(FILE_RESERVACION+"/"+reservacion.getNoPasaporte());
           ObjectOutputStream salida = new ObjectOutputStream(fileOutput);
-          salida.writeObject(distancias);
+          salida.writeObject(reservacion);
           salida.close();
         }
     }

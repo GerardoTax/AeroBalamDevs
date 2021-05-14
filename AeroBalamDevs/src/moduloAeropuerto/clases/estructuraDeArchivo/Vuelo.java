@@ -15,12 +15,12 @@ import java.time.LocalDate;
 public class Vuelo implements Serializable{
     private int codigoVuelo;
     private int codigoAvion;
-    private int nombreAerpurtoOrigen;
-    private int nombreAerpurtoDestino;
-    private double precioBoleto;
+    private String nombreAerpurtoOrigen;
+    private String nombreAerpurtoDestino;
+    private int precioBoleto;
     private LocalDate fechaDeSalida;
 
-    public Vuelo(int codigoVuelo, int codigoAvion, int nombreAerpurtoOrigen, int nombreAerpurtoDestino, int precioBoleto, LocalDate fechaDeSalida) {
+    public Vuelo(int codigoVuelo, int codigoAvion, String  nombreAerpurtoOrigen, String nombreAerpurtoDestino, int precioBoleto, LocalDate fechaDeSalida) {
         this.codigoVuelo = codigoVuelo;
         this.codigoAvion = codigoAvion;
         this.nombreAerpurtoOrigen = nombreAerpurtoOrigen;
@@ -45,23 +45,23 @@ public class Vuelo implements Serializable{
         this.codigoAvion = codigoAvion;
     }
 
-    public int getNombreAerpurtoOrigen() {
+    public String  getNombreAerpurtoOrigen() {
         return nombreAerpurtoOrigen;
     }
 
-    public void setNombreAerpurtoOrigen(int nombreAerpurtoOrigen) {
+    public void setNombreAerpurtoOrigen(String nombreAerpurtoOrigen) {
         this.nombreAerpurtoOrigen = nombreAerpurtoOrigen;
     }
 
-    public int getNombreAerpurtoDestino() {
+    public String getNombreAerpurtoDestino() {
         return nombreAerpurtoDestino;
     }
 
-    public void setNombreAerpurtoDestino(int nombreAerpurtoDestino) {
+    public void setNombreAerpurtoDestino(String nombreAerpurtoDestino) {
         this.nombreAerpurtoDestino = nombreAerpurtoDestino;
     }
 
-    public double getPrecioBoleto() {
+    public int getPrecioBoleto() {
         return precioBoleto;
     }
 

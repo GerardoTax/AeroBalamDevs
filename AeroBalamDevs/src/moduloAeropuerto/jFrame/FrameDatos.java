@@ -20,8 +20,10 @@ import moduloAeropuerto.Manejadores.ManejadorCargaDatos;
 import moduloAeropuerto.Manejadores.ManejadorPanelAvion;
 import moduloAeropuerto.archivosBinarios.EscritorDeAerolineaBinarios;
 import moduloAeropuerto.archivosBinarios.EscritorDeAeropuertoBinarios;
+import moduloAeropuerto.archivosBinarios.EscritorDeAvionesBinarios;
 import moduloAeropuerto.clases.ExcepcionVentana;
 import moduloAeropuerto.clases.estructuraDeArchivo.Aeropuerto;
+import moduloAeropuerto.clases.estructuraDeArchivo.Aviones;
 
 /**
  *
@@ -34,8 +36,10 @@ public class FrameDatos extends javax.swing.JFrame  {
     private Vector<String> vectorAerpuerto = new Vector<>();
     private Vector<String> vectorAerolinea = new Vector<>();
     private ArrayList<Aeropuerto> listaAerpuerto; 
+    private ArrayList<Aviones> listaviones;
     private ManejadorPanelAvion manejadorPanelAvion;
     private EscritorDeAerolineaBinarios escritorDeAerolineaBinarios; 
+    private EscritorDeAvionesBinarios escritorDeAvionesBinarios;
    
     public FrameDatos() {
         initComponents();
@@ -43,6 +47,7 @@ public class FrameDatos extends javax.swing.JFrame  {
         this.manejadorCargaDatos=new ManejadorCargaDatos(this); 
         this.escritorDeAeropuertoBinarios=new EscritorDeAeropuertoBinarios();
         this.manejadorPanelAvion= new ManejadorPanelAvion(this);
+        this.escritorDeAvionesBinarios= new EscritorDeAvionesBinarios();
         CargarAeropuerto();
         
        
@@ -241,7 +246,7 @@ public class FrameDatos extends javax.swing.JFrame  {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jComboBoAeropuerto, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,7 +260,7 @@ public class FrameDatos extends javax.swing.JFrame  {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,6 +299,11 @@ public class FrameDatos extends javax.swing.JFrame  {
         jPanel4.setBackground(new java.awt.Color(153, 153, 153));
 
         jButton4.setText("Buscar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel12.setText("Aerolinea");
@@ -499,9 +509,9 @@ public class FrameDatos extends javax.swing.JFrame  {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(169, Short.MAX_VALUE)
+                .addContainerGap(191, Short.MAX_VALUE)
                 .addComponent(jButton9)
-                .addGap(49, 49, 49)
+                .addGap(27, 27, 27)
                 .addComponent(jButton5)
                 .addGap(22, 22, 22))
         );
@@ -594,7 +604,23 @@ public class FrameDatos extends javax.swing.JFrame  {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         CargarInformacion tmp= new CargarInformacion();
         tmp.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        String aerolinea=jTextField12.getText();
+        // int codigo= Integer.parseInt(jTextField13.getText());
+        try {
+          this.listaviones=this.escritorDeAvionesBinarios.leerAvion();
+          System.out.println(this.listaviones.get(0).getCodigoAvion());
+             
+        } catch (IOException ex) {
+            Logger.getLogger(FrameDatos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FrameDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         //listaviones.get(0).getCodigoAvion();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

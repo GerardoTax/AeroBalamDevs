@@ -73,6 +73,7 @@ public class CargaDeInformacion {
         for(int i=0;i<this.lisPasaporte.size();i++){
             if(nuemeroPasaporte==this.lisPasaporte.get(i).getNoPasaporte()){
                     System.out.println("Existe");
+                    System.out.println(lisPasaporte.get(i).getFechaEmision());
                     this.setEstado(1);
                     return;
             }
