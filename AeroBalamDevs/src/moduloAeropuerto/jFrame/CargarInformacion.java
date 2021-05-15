@@ -105,6 +105,8 @@ public class CargarInformacion extends javax.swing.JFrame {
         });
 
         jButton8.setText("renovacion");
+        jButton8.setMaximumSize(new java.awt.Dimension(80, 23));
+        jButton8.setMinimumSize(new java.awt.Dimension(80, 23));
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -183,19 +185,20 @@ public class CargarInformacion extends javax.swing.JFrame {
                                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jButton8))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(51, 51, 51))))
         );
@@ -228,25 +231,8 @@ public class CargarInformacion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         JFileChooser fileChosser = new JFileChooser();
-        int seleccion = fileChosser.showOpenDialog(this);
-        if (seleccion == JFileChooser.APPROVE_OPTION) {
-            //aqui selecciono y guardo el FILE que va a utilizar el FileReader
-            File fichero = fileChosser.getSelectedFile();
-            try {
-                //ArrayList<Aeropuerto> lisAeropuerto = this.lectorDeVehiculosEnTexto.leerFichero(fichero, this.historialDeCargaText);
-                ArrayList<Aeropuerto> lisAeropuerto =this.leerAeropuertoTxt.leerFichero(fichero,this.jTextArea1);
-                this.escritorDeAeropuertoBinarios.guardarAeropuerto(lisAeropuerto);
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Error al leer el archivo");
-                ex.printStackTrace();
-            }
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         JFileChooser fileChosser = new JFileChooser();
+        JFileChooser fileChosser = new JFileChooser();
         int seleccion = fileChosser.showOpenDialog(this);
         if (seleccion == JFileChooser.APPROVE_OPTION) {
             //aqui selecciono y guardo el FILE que va a utilizar el FileReader
@@ -262,14 +248,25 @@ public class CargarInformacion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        FrameDatos frameDatos=new FrameDatos();
-        frameDatos.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton10ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JFileChooser fileChosser = new JFileChooser();
+        int seleccion = fileChosser.showOpenDialog(this);
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            //aqui selecciono y guardo el FILE que va a utilizar el FileReader
+            File fichero = fileChosser.getSelectedFile();
+            try {
+                //ArrayList<Aeropuerto> lisAeropuerto = this.lectorDeVehiculosEnTexto.leerFichero(fichero, this.historialDeCargaText);
+                ArrayList<Aeropuerto> lisAeropuerto =this.leerAeropuertoTxt.leerFichero(fichero,this.jTextArea1);
+                this.escritorDeAeropuertoBinarios.guardarAeropuerto(lisAeropuerto);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Error al leer el archivo");
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-         JFileChooser fileChosser = new JFileChooser();
+        JFileChooser fileChosser = new JFileChooser();
         int seleccion = fileChosser.showOpenDialog(this);
         if (seleccion == JFileChooser.APPROVE_OPTION) {
             //aqui selecciono y guardo el FILE que va a utilizar el FileReader
@@ -286,7 +283,7 @@ public class CargarInformacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-         JFileChooser fileChosser = new JFileChooser();
+        JFileChooser fileChosser = new JFileChooser();
         int seleccion = fileChosser.showOpenDialog(this);
         if (seleccion == JFileChooser.APPROVE_OPTION) {
             //aqui selecciono y guardo el FILE que va a utilizar el FileReader
@@ -302,24 +299,8 @@ public class CargarInformacion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-         JFileChooser fileChosser = new JFileChooser();
-        int seleccion = fileChosser.showOpenDialog(this);
-        if (seleccion == JFileChooser.APPROVE_OPTION) {
-            //aqui selecciono y guardo el FILE que va a utilizar el FileReader
-            File fichero = fileChosser.getSelectedFile();
-            try {
-                ArrayList<Tarjeta> lisTarjeta =this.leerAeropuertoTxt.leerFicheroTarjeta(fichero, jTextArea1);
-                this.escritorDeTarjetaBinarios.guardarAeropuerto(lisTarjeta);
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Error al leer el archivo");
-                ex.printStackTrace();
-            }
-        }
-    }//GEN-LAST:event_jButton6ActionPerformed
-
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-         JFileChooser fileChosser = new JFileChooser();
+        JFileChooser fileChosser = new JFileChooser();
         int seleccion = fileChosser.showOpenDialog(this);
         if (seleccion == JFileChooser.APPROVE_OPTION) {
             //aqui selecciono y guardo el FILE que va a utilizar el FileReader
@@ -335,7 +316,7 @@ public class CargarInformacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-          JFileChooser fileChosser = new JFileChooser();
+        JFileChooser fileChosser = new JFileChooser();
         int seleccion = fileChosser.showOpenDialog(this);
         if (seleccion == JFileChooser.APPROVE_OPTION) {
             //aqui selecciono y guardo el FILE que va a utilizar el FileReader
@@ -351,7 +332,7 @@ public class CargarInformacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-          JFileChooser fileChosser = new JFileChooser();
+        JFileChooser fileChosser = new JFileChooser();
         int seleccion = fileChosser.showOpenDialog(this);
         if (seleccion == JFileChooser.APPROVE_OPTION) {
             //aqui selecciono y guardo el FILE que va a utilizar el FileReader
@@ -367,7 +348,7 @@ public class CargarInformacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-         JFileChooser fileChosser = new JFileChooser();
+        JFileChooser fileChosser = new JFileChooser();
         int seleccion = fileChosser.showOpenDialog(this);
         if (seleccion == JFileChooser.APPROVE_OPTION) {
             //aqui selecciono y guardo el FILE que va a utilizar el FileReader
@@ -381,6 +362,28 @@ public class CargarInformacion extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        JFileChooser fileChosser = new JFileChooser();
+        int seleccion = fileChosser.showOpenDialog(this);
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            //aqui selecciono y guardo el FILE que va a utilizar el FileReader
+            File fichero = fileChosser.getSelectedFile();
+            try {
+                ArrayList<Tarjeta> lisTarjeta =this.leerAeropuertoTxt.leerFicheroTarjeta(fichero, jTextArea1);
+                this.escritorDeTarjetaBinarios.guardarAeropuerto(lisTarjeta);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Error al leer el archivo");
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        FrameDatos frameDatos=new FrameDatos();
+        frameDatos.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     /**
      * @param args the command line arguments

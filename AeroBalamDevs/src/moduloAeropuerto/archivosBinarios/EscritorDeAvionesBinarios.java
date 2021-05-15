@@ -37,14 +37,15 @@ public class EscritorDeAvionesBinarios {
     }
      public ArrayList<Aviones> leerAvion() throws FileNotFoundException,IOException,ClassNotFoundException{
         ArrayList<Aviones> lisAviones = new ArrayList<>();
-        String[] archivos=EscritorDeAvionesBinarios.FILE_AVIONES.list();
+        String[] archivos=this.FILE_AVIONES.list();
         ObjectInputStream lector;   
-        System.out.println("Archivos:"+archivos.length+"--------Aviones");
+        System.out.println("Archivos:"+archivos.length+"--------Aviones   *****");
         for (int i = 0; i < archivos.length; i++) {
             String archivo = archivos[i];
-            lector = new ObjectInputStream(new FileInputStream(EscritorDeAvionesBinarios.FILE_AVIONES+"/"+archivo));
+            lector = new ObjectInputStream(new FileInputStream(this.FILE_AVIONES+"/"+archivo));
             Aviones a =(Aviones)lector.readObject();
             System.out.println(a.getCodigoAvion());
+            lisAviones.add(a);
             lector.close();
         }
         return lisAviones;

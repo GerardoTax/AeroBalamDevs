@@ -138,19 +138,12 @@ public class ManejadorDeUsuario {
     }
     public void validarCamposBusquedaVuelos() throws ExcepcionVentana{
         validarCampoVacio(moduloPasajeros.getjTextField20().getText(),"No Pasaporte");
-        validarCampoVacio(moduloPasajeros.getjTextField21().getText(),"Ciudad de Origen");
-        validarCampoVacio(moduloPasajeros.getjTextField22().getText(),"Ciudad de Destino");
-        validarCampoVacio(moduloPasajeros.getjTextField23().getText(),"Fecha de vuelo");
         int numero=convertir(moduloPasajeros.getjTextField20().getText(),"No Pasaporte");
         if(  numero<100000000 && numero>=10000000  ){}
         else{
         JOptionPane.showMessageDialog(null, "El pasaporte tiene que obtener 8 digitos");
             moduloPasajeros.getjTextField20().setText("");
-        }
-            
-        darFormatoAFecha(moduloPasajeros.getjTextField23().getText());
-        
-        
+        }    
     }
     
     public int realizarBusqueda() throws ExcepcionVentana{

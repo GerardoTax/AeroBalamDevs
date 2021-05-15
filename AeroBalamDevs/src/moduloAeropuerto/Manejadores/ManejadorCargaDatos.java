@@ -50,8 +50,8 @@ public class ManejadorCargaDatos {
         if (campo.equals("")){
             throw new ExcepcionVentana("Error en el campo  "+tipoDato+ "  esta vacio");
         }
-    
     }
+    
      public void ValidarAeropuerto() throws ExcepcionVentana {
        //comprovar si el compo esta vacio
        validarCamposVacios(frameDatos.getNameAeropuerto().getText(),"Nombre de Aerolinea");
@@ -81,7 +81,6 @@ public class ManejadorCargaDatos {
         }
    }
   
-   
    public static Aeropuerto construirAeropuerto(String[] campos) {
        //vamos a contruir un Aerpuerto y retornar Aeropuerto
         Aeropuerto aeropuerto=null;
@@ -94,15 +93,13 @@ public class ManejadorCargaDatos {
         frameDatos.getCiudad().setText("");
         frameDatos.getPais().setText("");
     }
-    
-    
-    
+
     public static Aerolinea construirAerolinea(String [] campos){
         Aerolinea aerolinea=null;
         aerolinea=new Aerolinea(campos[0],campos[1]);   
         return aerolinea;
-    
     }
+    
     public void guardarAerolinea() throws ExcepcionVentana{
         ValidarAerlinea();
         String nombreAeropuerto= (String)frameDatos.getjComboBox1().getSelectedItem();
@@ -137,16 +134,16 @@ public class ManejadorCargaDatos {
         String consumomillas=frameDatos.getjTextField11().getText();
         String campos[] = {aerolinea, aeropuertoActual,codigoAvion,capasidadPasajeros,capasidadGasolina, consumomillas};
       
-       //creamos nuestro aerolinea  pasando el vector campos
-       Aviones nuevoAviones = construirAviones(campos);
-       JOptionPane.showMessageDialog(null, "Aerolinea guardada Guardado");
+        //creamos nuestro aerolinea  pasando el vector campos
+        Aviones nuevoAviones = construirAviones(campos);
+        JOptionPane.showMessageDialog(null, "Aerolinea guardada Guardado");
         frameDatos.getjTextField8().setText("");
         frameDatos.getjTextField9().setText("");
         frameDatos.getjTextField10().setText("");
         frameDatos.getjTextField11().setText("");
-       ArrayList<Aviones> lisaviones = new ArrayList<>();
-       lisaviones.add(nuevoAviones);
-       try {
+        ArrayList<Aviones> lisaviones = new ArrayList<>();
+        lisaviones.add(nuevoAviones);
+        try {
             //guardar el Pasaporte en un archivo binario
             this.escritorDeAvionesBinarios.guardarAeropuerto(lisaviones);
         } catch (IOException ex) {
@@ -171,37 +168,31 @@ public class ManejadorCargaDatos {
         try{
            int resultado=Integer.valueOf(campo);
            if(resultado<1){
-               
-            throw new ExcepcionVentana("Error en el campo  "+tipoDato+ " esta intentando ingresar un mumero negativo");
-               
-           } else {
-           return resultado;
-           }
+                 throw new ExcepcionVentana("Error en el campo  "+tipoDato+ " esta intentando ingresar un mumero negativo");
+            } 
+           else {
+                return resultado;
+            }
        }catch(NumberFormatException e){
-           
            throw new ExcepcionVentana("Error en el campo  "+tipoDato+ "  esta intentado ingresar una letra en ves de un numero");
            
        }
         
      }
      //costrucator de Aviones 
-      public static Aviones construirAviones(String [] campos){
+    public static Aviones construirAviones(String [] campos){
         Aviones aviones=null;
         aviones=new Aviones(campos[0],campos[1],con(campos[2]),con(campos[3]),con(campos[4]),con(campos[5]));  
-         
         return aviones;
-    
     }
       // convierte de un string a un int 
     public static int con(String campo){
-        int resultado;
-        resultado = Integer.valueOf(campo);
-        return resultado;
         
+       int resultado = Integer.valueOf(campo);
+        return resultado;
     }
     
    public void validarPersonal() throws ExcepcionVentana{
-       
        validarCamposVacios(frameDatos.getUsuario().getText(),"Usuariio");
        validarCamposVacios(frameDatos.getContrasella().getText(),"Contraseña");
        convertir(frameDatos.getContrasella().getText(),"Contraseña");  
@@ -210,7 +201,6 @@ public class ManejadorCargaDatos {
    public static Personal construirPersonal(String [] campos){
         Personal personal=null;
         personal=new Personal(campos[0],con(campos[1]),campos[2]);  
-         
         return personal;
     
     }
@@ -221,28 +211,34 @@ public class ManejadorCargaDatos {
          String area= (String) frameDatos.getArea().getSelectedItem();
          String campo[]={usuario,contraseña,area};
          Personal nuevoPersonal = construirPersonal(campo);
-       JOptionPane.showMessageDialog(null, "Personal Guardado");
-        frameDatos.getUsuario().setText("");
-        frameDatos.getContrasella().setText("");
-       ArrayList<Personal> lisPersonal = new ArrayList<>();
-       lisPersonal.add(nuevoPersonal);
-       try {
-            //guardar el Pasaporte en un archivo binario
-            this.lectorEscrituraBinariosPersonal.guardarPersonal(lisPersonal);
-        } catch (IOException ex) {
+         JOptionPane.showMessageDialog(null, "Personal Guardado");
+         frameDatos.getUsuario().setText("");
+         frameDatos.getContrasella().setText("");
+         ArrayList<Personal> lisPersonal = new ArrayList<>();
+         lisPersonal.add(nuevoPersonal);
+         try {
+              //guardar el Pasaporte en un archivo binario
+               this.lectorEscrituraBinariosPersonal.guardarPersonal(lisPersonal);
+         } catch (IOException ex) {
             Logger.getLogger(ModuloPasajeros.class.getName()).log(Level.SEVERE, null, ex);
         }     
    }
-   public int retornarCapacidadAvion() throws ExcepcionVentana{
-    int resultado=convertir(frameDatos.getjTextField9().getText(),"Capasidad Pasajeros");
+    public int retornarCapacidadAvion() throws ExcepcionVentana{
+        int resultado=convertir(frameDatos.getjTextField9().getText(),"Capasidad Pasajeros");
         return resultado;
-   }
+    }
        
-   public static Distancia construirDistancica(String [] campos){
+    public static Distancia construirDistancica(String [] campos){
        Distancia distancia=null; 
        distancia=new Distancia(campos[0],campos[1],con(campos[2]));
        return distancia;
-   }
+    }
+   
+    public int codigoAvion() throws ExcepcionVentana{
+        validarCamposVacios(frameDatos.getjTextField13().getText(),"Codigo de avion");
+        int codigo=convertir(frameDatos.getjTextField13().getText(),"Codigo de avion");
+        return codigo;
+    }
    
    
 }

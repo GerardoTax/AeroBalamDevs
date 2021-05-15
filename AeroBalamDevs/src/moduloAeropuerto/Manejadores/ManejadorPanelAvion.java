@@ -49,6 +49,7 @@ public class ManejadorPanelAvion {
        for(int i=0;i<listaAerolinea.size(); i++){
            vectorAerolinea.add(listaAerolinea.get(i).getNombreAeropuerto());
            frameDatos.getjComboBoxAerolinea().addItem(this.vectorAerolinea.get(i));
+           frameDatos.getjComboBox2().addItem(this.vectorAerolinea.get(i));
        }
    }
 }

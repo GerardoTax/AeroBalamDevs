@@ -23,8 +23,8 @@ import moduloAeropuerto.clases.estructuraDeArchivo.Tarjeta;
  */
 public class EscritorDeTarjetaBinarios {
      
-    public static final File  FILE_TARJETA= new File("/Users/dell/Desktop/AeroBalamDevs/AeroBalamDevs/GuardarArhivosBinarios/ArchivosBinariosTarjeta");
-    
+   public static final File  FILE_TARJETA= new File("/Users/dell/Desktop/AeroBalamDevs/AeroBalamDevs/GuardarArhivosBinarios/ArchivosBinariosTarjeta");
+
     public void guardarAeropuerto(ArrayList<Tarjeta> lisTarjeta) throws IOException,FileNotFoundException{
          
         for (Tarjeta tarjetas : lisTarjeta) {
@@ -43,10 +43,9 @@ public class EscritorDeTarjetaBinarios {
         ObjectInputStream lector;   
         System.out.println("Archivos:"+archivos.length);
         for (int i = 0; i < archivos.length; i++) {
-            String archivo = archivos[i];
+           String archivo = archivos[i];
             lector = new ObjectInputStream(new FileInputStream(this.FILE_TARJETA+"/"+archivo));
             Tarjeta tar =(Tarjeta)lector.readObject();
-            //System.out.println("Puesto: "+v.getPuesto()+ "  "+v.getUsuario());
             lisTarjeta.add(tar);
             lector.close();
         }

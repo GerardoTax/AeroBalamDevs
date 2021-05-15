@@ -51,7 +51,7 @@ public class ModuloPasajeros extends javax.swing.JFrame {
         this.escritorDePasaporteBinarios=new EscritorDePasaporteBinarios();
         this.manejadorDeUsuario=new ManejadorDeUsuario(this);
         this.cargaDeInformacion=new CargaDeInformacion(this);
-        this.cargaDeInformacion.leerAerolinea();
+        this.cargaDeInformacion.leerArchivos();
         
         
     }
@@ -94,11 +94,11 @@ public class ModuloPasajeros extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jTextField20 = new javax.swing.JTextField();
-        jTextField21 = new javax.swing.JTextField();
-        jTextField22 = new javax.swing.JTextField();
-        jTextField23 = new javax.swing.JTextField();
         comprarboleto = new javax.swing.JButton();
         jComboBoxAerolinea = new javax.swing.JComboBox<>();
+        jComboBoxorigen = new javax.swing.JComboBox<>();
+        jComboBoxfecha = new javax.swing.JComboBox<>();
+        jComboBoxDestino = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
@@ -290,18 +290,14 @@ public class ModuloPasajeros extends javax.swing.JFrame {
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel26.setText("Aerolinea ");
 
-        jTextField21.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField21ActionPerformed(evt);
-            }
-        });
-
-        comprarboleto.setText("Comprar");
+        comprarboleto.setText("Buscar");
         comprarboleto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comprarboletoActionPerformed(evt);
             }
         });
+
+        jComboBoxfecha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -309,30 +305,22 @@ public class ModuloPasajeros extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(157, 157, 157)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel22)
+                    .addComponent(jLabel26)
+                    .addComponent(jLabel23)
+                    .addComponent(jLabel24)
+                    .addComponent(jLabel25))
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel23)
-                        .addGap(37, 37, 37)
-                        .addComponent(jTextField21))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel22)
-                            .addComponent(jLabel26))
-                        .addGap(59, 59, 59)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField20)
-                            .addComponent(jComboBoxAerolinea, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel24)
-                        .addGap(34, 34, 34)
-                        .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel25)
-                        .addGap(51, 51, 51)
-                        .addComponent(jTextField23)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTextField20)
+                    .addComponent(jComboBoxAerolinea, 0, 135, Short.MAX_VALUE)
+                    .addComponent(jComboBoxorigen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBoxfecha, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBoxDestino, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(255, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(528, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(comprarboleto)
                 .addGap(91, 91, 91))
         );
@@ -346,15 +334,15 @@ public class ModuloPasajeros extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
-                    .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxorigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
-                    .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
-                    .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
@@ -419,7 +407,7 @@ public class ModuloPasajeros extends javax.swing.JFrame {
     private void comprarboletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprarboletoActionPerformed
         try {
            int pasaporte= this.manejadorDeUsuario.realizarBusqueda();
-           this.cargaDeInformacion.verificarExistenciaPasaporte(pasaporte);
+           this.cargaDeInformacion.buscarvuelo(pasaporte);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -436,10 +424,6 @@ public class ModuloPasajeros extends javax.swing.JFrame {
         principal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField21ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField21ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         LoginPasajero login=new LoginPasajero(this.cargaDeInformacion.getLisPasaporte());
@@ -459,6 +443,9 @@ public class ModuloPasajeros extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBoxAerolinea;
+    private javax.swing.JComboBox<String> jComboBoxDestino;
+    private javax.swing.JComboBox<String> jComboBoxfecha;
+    private javax.swing.JComboBox<String> jComboBoxorigen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -481,9 +468,6 @@ public class ModuloPasajeros extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField22;
-    private javax.swing.JTextField jTextField23;
     private javax.swing.JTextField millasTextField9;
     private javax.swing.JTextField nacionalidadTextField4;
     private javax.swing.JTextField noPasaporteTextField;
@@ -561,29 +545,28 @@ public class ModuloPasajeros extends javax.swing.JFrame {
         this.jTextField20 = jTextField20;
     }
 
-    public JTextField getjTextField21() {
-        return jTextField21;
+    public JComboBox<String> getjComboBoxDestino() {
+        return jComboBoxDestino;
     }
 
-    public void setjTextField21(JTextField jTextField21) {
-        this.jTextField21 = jTextField21;
+    public void setjComboBoxDestino(JComboBox<String> jComboBoxDestino) {
+        this.jComboBoxDestino = jComboBoxDestino;
     }
 
-    public JTextField getjTextField22() {
-        return jTextField22;
+    public JComboBox<String> getjComboBoxfecha() {
+        return jComboBoxfecha;
     }
 
-    public void setjTextField22(JTextField jTextField22) {
-        this.jTextField22 = jTextField22;
+    public void setjComboBoxfecha(JComboBox<String> jComboBoxfecha) {
+        this.jComboBoxfecha = jComboBoxfecha;
     }
 
-    public JTextField getjTextField23() {
-        return jTextField23;
+    public JComboBox<String> getjComboBoxorigen() {
+        return jComboBoxorigen;
     }
 
-    public void setjTextField23(JTextField jTextField23) {
-        this.jTextField23 = jTextField23;
+    public void setjComboBoxorigen(JComboBox<String> jComboBoxorigen) {
+        this.jComboBoxorigen = jComboBoxorigen;
     }
-    
-     
+         
 }

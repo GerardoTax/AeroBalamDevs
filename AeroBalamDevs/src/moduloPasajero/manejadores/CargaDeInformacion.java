@@ -7,15 +7,21 @@ package moduloPasajero.manejadores;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import moduloAeropuerto.archivosBinarios.EscritorDeAerolineaBinarios;
+import moduloAeropuerto.archivosBinarios.EscritorDeAeropuertoBinarios;
 import moduloAeropuerto.archivosBinarios.EscritorDePasaporteBinarios;
+import moduloAeropuerto.archivosBinarios.EscritorDeVueloBinarios;
 import moduloAeropuerto.clases.estructuraDeArchivo.Aerolinea;
+import moduloAeropuerto.clases.estructuraDeArchivo.Aeropuerto;
 import moduloAeropuerto.clases.estructuraDeArchivo.Pasaporte;
+import moduloAeropuerto.clases.estructuraDeArchivo.Vuelo;
 import moduloAeropuerto.enumm.Verificacion;
 import moduloAeropuerto.jFrame.LoginAeropuerto;
 import moduloPasajero.Jframe.ModuloPasajeros;
@@ -31,61 +37,62 @@ public class CargaDeInformacion {
     private ModuloPasajeros moduloPasajeros;
     private EscritorDePasaporteBinarios EscritorDePasaporteBinarios;
     private ArrayList<Pasaporte> lisPasaporte;
+    private EscritorDeVueloBinarios escritorDeVueloBinarios;
+    private ArrayList<Vuelo> lisvuelos;
+    private Vector<String> vectoVuelo= new Vector<>();
+    private EscritorDeAeropuertoBinarios escritorDeAeropuertoBinarios;
+    private ArrayList<Aeropuerto> lisAeropuerto;
+    private Vector<String> vectorCiudad= new Vector<>();
+    private int indicePasaporte;
+    
     private int estado;
     
     public CargaDeInformacion(ModuloPasajeros moduloPasajeros){
         this.moduloPasajeros=moduloPasajeros;
         this.EscritorDeAerolineaBinarios= new EscritorDeAerolineaBinarios();
         this.EscritorDePasaporteBinarios=new EscritorDePasaporteBinarios();
+        this.escritorDeVueloBinarios=new EscritorDeVueloBinarios();
+        this.escritorDeAeropuertoBinarios= new EscritorDeAeropuertoBinarios();
         
     }
     
-    public void leerAerolinea() {
+    public void leerArchivos() {
         try {
+            lisPasaporte=this.EscritorDePasaporteBinarios.leerPasaporte();
             lisAerolinea=this.EscritorDeAerolineaBinarios.leerAreolinea();
+            lisvuelos= this.escritorDeVueloBinarios.leerVuelos();
+            lisAeropuerto=this.escritorDeAeropuertoBinarios.leerAeropuertos();
             cargarAerolinea();
-            //System.out.println(lisAerolinea.get(0).getNombreAerolinea());
+            cargarCiudades();
+            
         } catch (IOException ex) {
                  Logger.getLogger(LoginAeropuerto.class.getName()).log(Level.SEVERE, null, ex);
-             } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex) {
                  Logger.getLogger(LoginAeropuerto.class.getName()).log(Level.SEVERE, null, ex);
-             }
-    }
-    public void cargarAerolinea() {
-        for(int i=0;i<this.lisAerolinea.size();i++){
-            vectorAerolinea.add(this.lisAerolinea.get(i).getNombreAeropuerto());
-            this.moduloPasajeros.getjComboBoxAerolinea().addItem(vectorAerolinea.get(i)); 
         }
     }
     
-    public void leerPasaporte(){
-        try {
-            this.lisPasaporte=this.EscritorDePasaporteBinarios.leerPasaporte();
-        } catch (IOException ex) {
-            Logger.getLogger(CargaDeInformacion.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CargaDeInformacion.class.getName()).log(Level.SEVERE, null, ex);
+    public void cargarAerolinea() {
+        for(int i=0;i<this.lisAerolinea.size();i++){
+            vectorAerolinea.add(this.lisAerolinea.get(i).getNombreAeropuerto());
+            this.moduloPasajeros.getjComboBoxAerolinea().addItem(vectorAerolinea.get(i));  
         }
     }
  
-     public void verificarExistenciaPasaporte(int nuemeroPasaporte){
-          leerPasaporte();
-        for(int i=0;i<this.lisPasaporte.size();i++){
-            if(nuemeroPasaporte==this.lisPasaporte.get(i).getNoPasaporte()){
-                    System.out.println("Existe");
-                    System.out.println(lisPasaporte.get(i).getFechaEmision());
-                    this.setEstado(1);
-                    return;
-            }
-             
-            this.setEstado(0);
-             
+    public void cargarCiudades(){
+         for(int i=0;i<this.lisAeropuerto.size();i++){
+            vectorCiudad.add(this.lisAeropuerto.get(i).getCiudad());
+            moduloPasajeros.getjComboBoxorigen().addItem(vectorCiudad.get(i));
+            moduloPasajeros.getjComboBoxDestino().addItem(vectorCiudad.get(i));
         }
-        if(this.getEstado()==0){
-             JOptionPane.showMessageDialog(null,"EL pasaporte no Existe");
-        }
-             
     }
+    
+        public void buscarvuelo(int numero){
+            BuscarVuelo tmp= new BuscarVuelo(lisPasaporte,lisAerolinea,lisvuelos,lisAeropuerto,numero);
+            tmp.verificarExistenciaPasaporte();
+            tmp.ciudadesp();
+        }
+
     public int getEstado() {
         return estado;
     }
@@ -95,7 +102,7 @@ public class CargaDeInformacion {
     }
 
     public ArrayList<Pasaporte> getLisPasaporte() {
-        leerPasaporte();
+        leerArchivos();
         return lisPasaporte;
     }
 

@@ -5,31 +5,30 @@
  */
 package moduloAeropuerto.clases.estructuraDeArchivo;
 
+import java.io.Serializable;
 import moduloAeropuerto.jFrame.Avion;
 
 /**
  *
  * @author dell
  */
-public class Aviones extends Aerolinea{
+public class Aviones  implements Serializable{
     
     private int codigoAvion;
-    //maximo 50 filas 
-    //asiento asiento pasillo asiento asiento
+    private String nombreAerolinea;
+    private String nombreAeropuerto;
     private int capacidadPasajeros;
     private int capacidadGasolina;
     private int consumoPorMillas;
-    //private int filas;
-    //private int columnas;
+   
     
     public Aviones(String nombreAerolinea, String nombreAeropuerto,int codigoAvion, int capacidadPasajeros ,int capacidadGasolina, int consumoPorMillas) {
-        super(nombreAerolinea, nombreAeropuerto);
+        this.nombreAerolinea=nombreAerolinea;
+        this.nombreAeropuerto=nombreAeropuerto;
         this.codigoAvion=codigoAvion;
         this.capacidadPasajeros=capacidadPasajeros;
         this.capacidadGasolina=capacidadGasolina;
         this.consumoPorMillas=consumoPorMillas;
-        //this.filas=fila;
-        //this.columnas=columna;
         
     }
 
@@ -65,12 +64,21 @@ public class Aviones extends Aerolinea{
         this.consumoPorMillas = consumoPorMillas;
     }
 
-    @Override
-    public String toString() {
-        return "Aviones{" + "codigoAvion=" + codigoAvion + ", capacidadPasajeros=" + capacidadPasajeros + ", capacidadGasolina=" + capacidadGasolina + ", consumoPorMillas=" + consumoPorMillas + '}';
+    public String getNombreAerolinea() {
+        return nombreAerolinea;
     }
 
-  
-    
-    
+    public void setNombreAerolinea(String nombreAerolinea) {
+        this.nombreAerolinea = nombreAerolinea;
+    }
+
+    public String getNombreAeropuerto() {
+        return nombreAeropuerto;
+    }
+
+    public void setNombreAeropuerto(String nombreAeropuerto) {
+        this.nombreAeropuerto = nombreAeropuerto;
+    }
+   
+
 }
