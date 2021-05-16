@@ -97,8 +97,8 @@ public class ModuloPasajeros extends javax.swing.JFrame {
         comprarboleto = new javax.swing.JButton();
         jComboBoxAerolinea = new javax.swing.JComboBox<>();
         jComboBoxorigen = new javax.swing.JComboBox<>();
-        jComboBoxfecha = new javax.swing.JComboBox<>();
         jComboBoxDestino = new javax.swing.JComboBox<>();
+        jComboBoxfecha = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
@@ -297,8 +297,6 @@ public class ModuloPasajeros extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxfecha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -316,8 +314,8 @@ public class ModuloPasajeros extends javax.swing.JFrame {
                     .addComponent(jTextField20)
                     .addComponent(jComboBoxAerolinea, 0, 135, Short.MAX_VALUE)
                     .addComponent(jComboBoxorigen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBoxfecha, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBoxDestino, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jComboBoxDestino, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBoxfecha, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(255, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

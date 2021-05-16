@@ -8,6 +8,7 @@ package moduloPasajero.manejadores;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -16,10 +17,13 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import moduloAeropuerto.archivosBinarios.EscritorDeAerolineaBinarios;
 import moduloAeropuerto.archivosBinarios.EscritorDeAeropuertoBinarios;
+import moduloAeropuerto.archivosBinarios.EscritorDeAvionesBinarios;
 import moduloAeropuerto.archivosBinarios.EscritorDePasaporteBinarios;
 import moduloAeropuerto.archivosBinarios.EscritorDeVueloBinarios;
+import moduloAeropuerto.clases.ExcepcionVentana;
 import moduloAeropuerto.clases.estructuraDeArchivo.Aerolinea;
 import moduloAeropuerto.clases.estructuraDeArchivo.Aeropuerto;
+import moduloAeropuerto.clases.estructuraDeArchivo.Aviones;
 import moduloAeropuerto.clases.estructuraDeArchivo.Pasaporte;
 import moduloAeropuerto.clases.estructuraDeArchivo.Vuelo;
 import moduloAeropuerto.enumm.Verificacion;
@@ -43,9 +47,9 @@ public class CargaDeInformacion {
     private EscritorDeAeropuertoBinarios escritorDeAeropuertoBinarios;
     private ArrayList<Aeropuerto> lisAeropuerto;
     private Vector<String> vectorCiudad= new Vector<>();
-    private int indicePasaporte;
+    private EscritorDeAvionesBinarios escritorDeAvionesBinarios;
+    private ArrayList<Aviones> lisAviones;
     
-    private int estado;
     
     public CargaDeInformacion(ModuloPasajeros moduloPasajeros){
         this.moduloPasajeros=moduloPasajeros;
@@ -53,6 +57,7 @@ public class CargaDeInformacion {
         this.EscritorDePasaporteBinarios=new EscritorDePasaporteBinarios();
         this.escritorDeVueloBinarios=new EscritorDeVueloBinarios();
         this.escritorDeAeropuertoBinarios= new EscritorDeAeropuertoBinarios();
+        this.escritorDeAvionesBinarios = new EscritorDeAvionesBinarios();
         
     }
     
@@ -62,8 +67,11 @@ public class CargaDeInformacion {
             lisAerolinea=this.EscritorDeAerolineaBinarios.leerAreolinea();
             lisvuelos= this.escritorDeVueloBinarios.leerVuelos();
             lisAeropuerto=this.escritorDeAeropuertoBinarios.leerAeropuertos();
+            lisAviones=this.escritorDeAvionesBinarios.leerAvion();
+            
             cargarAerolinea();
             cargarCiudades();
+            CargarFecha();
             
         } catch (IOException ex) {
                  Logger.getLogger(LoginAeropuerto.class.getName()).log(Level.SEVERE, null, ex);
@@ -87,18 +95,41 @@ public class CargaDeInformacion {
         }
     }
     
-        public void buscarvuelo(int numero){
-            BuscarVuelo tmp= new BuscarVuelo(lisPasaporte,lisAerolinea,lisvuelos,lisAeropuerto,numero);
-            tmp.verificarExistenciaPasaporte();
-            tmp.ciudadesp();
+    public void CargarFecha(){
+        for(int i=0; i<lisvuelos.size();i++){
+            vectoVuelo.add(String.valueOf(lisvuelos.get(i).getFechaDeSalida()));
+            this.moduloPasajeros.getjComboBoxfecha().addItem(this.vectoVuelo.get(i));
         }
-
-    public int getEstado() {
-        return estado;
     }
-
-    public void setEstado(int estado) {
-        this.estado = estado;
+    
+        public void buscarvuelo(int numero){
+            String origen= (String) moduloPasajeros.getjComboBoxorigen().getSelectedItem();
+            String destino= (String) moduloPasajeros.getjComboBoxDestino().getSelectedItem();
+            String fecha= (String) moduloPasajeros.getjComboBoxfecha().getSelectedItem();
+            LocalDate fechavuelo=darFormatoAFecha(fecha);
+            String aerolinea= (String) moduloPasajeros.getjComboBoxAerolinea().getSelectedItem();
+            
+            BuscarVuelo tmp= new BuscarVuelo(lisPasaporte,lisAviones,lisvuelos,lisAeropuerto,numero,origen,destino,fechavuelo,aerolinea);
+            tmp.verificarExistenciaPasaporte();
+            tmp.ciudaOrigen();
+        try {
+            tmp.verificar();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+            tmp.buscarAeropuertoOrigen();
+            tmp.buscarAeropuertoDestino();
+            tmp.buscarCodigoVuelo();
+            tmp.buscarAviones();
+            tmp.buscarAerolinea();
+        }
+        
+        public static LocalDate darFormatoAFecha(String fechaCadena){
+        String[] fechaDividida=fechaCadena.split("-");
+        int anio = Integer.valueOf(fechaDividida[0]);
+        int mes = Integer.valueOf(fechaDividida[1]);
+        int dia = Integer.valueOf(fechaDividida[2]); 
+        return LocalDate.of(anio, mes, dia);
     }
 
     public ArrayList<Pasaporte> getLisPasaporte() {

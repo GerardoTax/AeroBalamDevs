@@ -84,7 +84,7 @@ public class ManejadorCargaDatos {
    public static Aeropuerto construirAeropuerto(String[] campos) {
        //vamos a contruir un Aerpuerto y retornar Aeropuerto
         Aeropuerto aeropuerto=null;
-        aeropuerto=new Aeropuerto(campos[0],campos[1],campos[0]);   
+        aeropuerto=new Aeropuerto(campos[0],campos[1],campos[2]);   
         return aeropuerto ;
     }
    

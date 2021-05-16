@@ -658,11 +658,13 @@ public class FrameDatos extends javax.swing.JFrame  {
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         Vuelos vuelo=new Vuelos();
         vuelo.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
          Distancias distancia=new Distancias();
          distancia.setVisible(true);
+         this.dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

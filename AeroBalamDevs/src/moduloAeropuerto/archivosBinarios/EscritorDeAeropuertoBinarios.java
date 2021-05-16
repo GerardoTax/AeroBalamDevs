@@ -50,7 +50,7 @@ public class EscritorDeAeropuertoBinarios implements Serializable{
             String archivo = archivos[i];
             lector = new ObjectInputStream(new FileInputStream(this.FILE_AEROPUERTO+"/"+archivo));
             Aeropuerto v =(Aeropuerto)lector.readObject();
-           // System.out.println( "Nombre  "+v.getNombreAeropuerto());
+             //System.out.println( "Pais  "+v.getCiudad());
             listaAeropuerto.add(v);
             lector.close();
         }
