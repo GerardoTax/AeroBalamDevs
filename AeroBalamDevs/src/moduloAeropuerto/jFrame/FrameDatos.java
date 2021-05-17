@@ -474,6 +474,8 @@ public class FrameDatos extends javax.swing.JFrame  {
 
         jTabbedPane1.addTab("Crear Aeropuertos", jPanel1);
 
+        jPanel7.setBackground(new java.awt.Color(153, 153, 153));
+
         jButton7.setText("Gerente");
 
         jButton8.setText("operador");
@@ -546,9 +548,9 @@ public class FrameDatos extends javax.swing.JFrame  {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(134, Short.MAX_VALUE)
+                .addGap(19, 19, 19)
                 .addComponent(jButton9)
-                .addGap(96, 96, 96)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
                 .addComponent(jButton5)
                 .addContainerGap())
         );

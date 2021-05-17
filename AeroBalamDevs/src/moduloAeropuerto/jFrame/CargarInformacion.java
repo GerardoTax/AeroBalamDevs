@@ -89,7 +89,6 @@ public class CargarInformacion extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
-        jButton10.setBackground(new java.awt.Color(0, 255, 0));
         jButton10.setText("Regresar");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
