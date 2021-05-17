@@ -5,8 +5,13 @@
  */
 package moduloPasajero.Jframe;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import moduloAeropuerto.clases.ExcepcionVentana;
+import moduloAeropuerto.jFrame.VerAsientos;
+import moduloPasajero.manejadores.ManejadorTarjeta;
 
 
 /**
@@ -15,10 +20,13 @@ import javax.swing.JTextField;
  */
 public class JframeTarjeta extends javax.swing.JFrame {
 
-  
-    public JframeTarjeta() {
+    private ManejadorTarjeta manejadorTarjeta;
+     private VerAsientos verAsientos;
+    public JframeTarjeta(VerAsientos verAsientos) {
         initComponents();
+        this.verAsientos=verAsientos;
         this.setLocationRelativeTo(null);
+        this.manejadorTarjeta=new ManejadorTarjeta(this);
         
     }
 
@@ -142,8 +150,12 @@ public class JframeTarjeta extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-         
+        try {
+            this.manejadorTarjeta.guardarTarjeta();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+         this.verAsientos.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

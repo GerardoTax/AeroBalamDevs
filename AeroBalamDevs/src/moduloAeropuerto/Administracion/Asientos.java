@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import moduloAeropuerto.jFrame.VerAsientos;
 import moduloPasajero.Jframe.JframeTarjeta;
 
 /**
@@ -18,10 +19,13 @@ import moduloPasajero.Jframe.JframeTarjeta;
 
    public class Asientos extends JButton  implements ActionListener{
      
-    public Asientos(int posx, int posy ,int ancho  ,int alto   ){
+    private VerAsientos verAsientos;
+    public Asientos(int posx, int posy ,int ancho  ,int alto,VerAsientos verAsientos   ){
         super.setBounds(posx, posy, ancho, alto);
+        this.verAsientos=verAsientos;
         addActionListener(this);
          setBackground(Color.GREEN);
+         
     
     }
     public void posicion(int x,int y){
@@ -32,8 +36,10 @@ import moduloPasajero.Jframe.JframeTarjeta;
     @Override
     public void actionPerformed(ActionEvent e) {
         setBackground(Color.RED);
-         JframeTarjeta tmp= new JframeTarjeta();
+         JframeTarjeta tmp= new JframeTarjeta(verAsientos);
          tmp.setVisible(true);
+         
+         
          
         
     }

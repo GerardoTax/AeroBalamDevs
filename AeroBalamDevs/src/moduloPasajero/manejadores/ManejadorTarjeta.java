@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import moduloAeropuerto.archivosBinarios.EscritorDePasaporteBinarios;
 import moduloAeropuerto.archivosBinarios.EscritorDeTarjetaBinarios;
 import moduloAeropuerto.clases.ExcepcionVentana;
 import moduloAeropuerto.clases.estructuraDeArchivo.Pasaporte;
@@ -25,10 +26,13 @@ public class ManejadorTarjeta {
     
     private JframeTarjeta  frameTarjeta;
     private EscritorDeTarjetaBinarios  EscritorDeTarjetaBinarios;
+    private EscritorDePasaporteBinarios  escritorDePasaporteBinarios;
+    private ArrayList<Pasaporte> lisPasaporte;
     
     public ManejadorTarjeta(JframeTarjeta  frameTarjeta){
         this.frameTarjeta=frameTarjeta;
         this.EscritorDeTarjetaBinarios=new EscritorDeTarjetaBinarios ();
+        this.escritorDePasaporteBinarios= new EscritorDePasaporteBinarios();
     }
     
     public void ValidarCampoVacio(String campo, String tipo) throws ExcepcionVentana{
@@ -67,8 +71,8 @@ public class ManejadorTarjeta {
          ValidarCampoVacio(frameTarjeta.getNoPasaporteTextField2().getText(),"No. Pasaporte");
          ValidarCampoVacio(frameTarjeta.getDineroTextField3().getText(),"Dienero");
          ValidarCampoVacio(frameTarjeta.getCodigoCVCTextField4().getText(),"No. Codigo");
-         convertir(frameTarjeta.getNoTarjetaTextField1().getText(),"No. Tarjeta");
-         convertir(frameTarjeta.getNoPasaporteTextField2().getText(),"No. Pasaporte");
+       int tarjeta=  convertir(frameTarjeta.getNoTarjetaTextField1().getText(),"No. Tarjeta");
+        int noPasa= convertir(frameTarjeta.getNoPasaporteTextField2().getText(),"No. Pasaporte");
          convertir(frameTarjeta.getDineroTextField3().getText(),"Dienero");
          int codigo=convertir(frameTarjeta.getCodigoCVCTextField4().getText(),"No. Codigo");
          if(codigo<1000 && codigo>=100){ }
@@ -76,6 +80,24 @@ public class ManejadorTarjeta {
              JOptionPane.showMessageDialog(null, "El codidgo tiene que tener 3 digitos");
              frameTarjeta.getCodigoCVCTextField4().setText("");
          }
+         
+        if( tarjeta<100000000 && tarjeta>=10000000){}
+        else {
+             frameTarjeta.getNoTarjetaTextField1().setText("");
+             throw new ExcepcionVentana("Error tiene que tener 8 digitos la tarfeta");
+        }
+          if( noPasa<100000000 && noPasa>=10000000){
+              verificarPasaporteExiste(noPasa);
+          }
+        else {
+             frameTarjeta.getNoPasaporteTextField2().setText("");
+             throw new ExcepcionVentana("Error no existe este Pasaporte");
+        }
+        
+        
+          
+         
+         
      }
    
      public Tarjeta construirTarjeta() throws ExcepcionVentana{
@@ -91,9 +113,10 @@ public class ManejadorTarjeta {
      
        
      public void guardarTarjeta() throws ExcepcionVentana{
+         cargarPAsaorte();
          validarcampoTarjeta();
          Tarjeta nuevaTarjeta=construirTarjeta();
-         JOptionPane.showMessageDialog(null, "Tarjeta Guardado");
+        // JOptionPane.showMessageDialog(null, "Tarjeta Guardado");
          ArrayList<Tarjeta> lisTarjeta = new ArrayList<>();
         lisTarjeta.add(nuevaTarjeta);
          try {
@@ -103,5 +126,37 @@ public class ManejadorTarjeta {
             Logger.getLogger(ModuloPasajeros.class.getName()).log(Level.SEVERE, null, ex);
         }
          
+     }
+     public void cargarPAsaorte(){
+        try {
+          this.lisPasaporte=  this.escritorDePasaporteBinarios.leerPasaporte();
+        } catch (IOException ex) {
+            Logger.getLogger(ManejadorTarjeta.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManejadorTarjeta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
+     public void verificarPasaporteExiste(int campo) throws ExcepcionVentana{
+         for(int i=0;i<this.lisPasaporte.size();i++){
+         
+             if(this.lisPasaporte.get(i).getNoPasaporte()==campo){
+                System.out.println(lisPasaporte.get(i).getContrasella());
+                int contrasena = (int)(Math.random()*(50000-1000+1)+1000);
+                String cont= String.valueOf(contrasena);
+                lisPasaporte.get(i).setContrasella(cont);
+                 try {
+                     this.escritorDePasaporteBinarios.guardarPasaporte(lisPasaporte);
+                }catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                 }
+                 
+                JOptionPane.showMessageDialog(null, "su contraseña es: "+contrasena);
+                    ModuloPasajeros tmp=new ModuloPasajeros();
+                    tmp.setVisible(true);
+                    frameTarjeta.dispose();
+                  
+             }
+            
+         }
      }
 }

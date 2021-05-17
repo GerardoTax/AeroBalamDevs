@@ -36,7 +36,7 @@ public class ConstruirAviones {
             for(int j=0;j<sumar;j++){   
                 
                      if(avion.getEstado().equals(this.e.ASIENTO)){
-                            botones[i][j]=new Asientos(60*j,60*i,50,50);
+                           // botones[i][j]=new Asientos(60*j,60*i,50,50);
                             botones[i][j].posicion(i, j); 
                             avion.getjPanel1().add(botones[i][j]);
                             avion.getjPanel1().updateUI();  
@@ -44,7 +44,7 @@ public class ConstruirAviones {
                            
                         }
                   else if (avion.getEstado().equals(this.e.PASILLO)){
-                            botones[i][j]=new Pasillo(60*j,60*i,50,50);
+                           // botones[i][j]=new Pasillo(60*j,60*i,50,50);
                             botones[i][j].posicion(i, j); 
                             avion.getjPanel1().add(botones[i][j]);
                             avion.getjPanel1().updateUI();  

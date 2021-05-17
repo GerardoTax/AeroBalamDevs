@@ -7,17 +7,19 @@ package moduloAeropuerto.Administracion;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import moduloAeropuerto.jFrame.VerAsientos;
 
 /**
  *
  * @author dell
  */
 public class Pasillo extends Asientos{
-    
-    public Pasillo(int posx, int posy, int ancho, int alto) {
-        super(posx, posy, ancho, alto);
-        setBackground(Color.GRAY);
+
+    public Pasillo(int posx, int posy, int ancho, int alto, VerAsientos verAsientos) {
+        super(posx, posy, ancho, alto, verAsientos);
     }
+    
+   
     
      public void posicion(int x,int y){
       //setText((x+1)+"-"+(y+1));

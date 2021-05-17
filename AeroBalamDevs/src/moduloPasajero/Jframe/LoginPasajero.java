@@ -6,10 +6,15 @@
 package moduloPasajero.Jframe;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import moduloAeropuerto.clases.ExcepcionVentana;
 import moduloAeropuerto.clases.estructuraDeArchivo.Pasaporte;
 import moduloPasajero.manejadores.CargaDeInformacion;
+import moduloPasajero.manejadores.Manejador;
 
 /**
  *
@@ -18,10 +23,13 @@ import moduloPasajero.manejadores.CargaDeInformacion;
 public class LoginPasajero extends javax.swing.JFrame {
 
     private ArrayList<Pasaporte> listaPasaporte;
+    private Manejador manejador;
+    private int pasaporte, contraseña;
     public LoginPasajero(ArrayList<Pasaporte> listaPasaporte) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.listaPasaporte=listaPasaporte;
+        this.manejador=new Manejador();
         
        
     }
@@ -105,10 +113,14 @@ public class LoginPasajero extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       System.out.println( this.listaPasaporte.get(1).getNoPasaporte());
-       System.out.println( "Contraseña "+this.listaPasaporte.get(1).getContrasella());
+       System.out.println( this.listaPasaporte.get(0).getNoPasaporte());
+       System.out.println( "Contraseña "+this.listaPasaporte.get(0).getContrasella());
        System.out.println( this.listaPasaporte.get(0).getApellido());
-       
+        try {
+            verificarDatos();
+         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -141,5 +153,43 @@ public class LoginPasajero extends javax.swing.JFrame {
         this.jTextField1 = jTextField1;
     }
 
-
+    public void verificarDatos() throws ExcepcionVentana{
+        
+        try {
+           pasaporte= this.manejador.convertirAnumero(jTextField1.getText(),"Pasaporte");
+           contraseña= this.manejador.convertirAnumero(this.jPasswordField1.getText(),"Contraseña");
+           cargar();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+    public void cargar() throws ExcepcionVentana{
+        for(int i=0; i<this.listaPasaporte.size();i++){
+            try{
+            if(this.listaPasaporte.get(i).getNoPasaporte()==pasaporte){
+                int cont= Integer.parseInt(listaPasaporte.get(i).getContrasella());
+                if(cont==contraseña){
+                 
+                    IformacionPasajero tmp= new IformacionPasajero(listaPasaporte,i);
+                     tmp.setVisible(true);
+                     this.dispose();
+                
+                }
+                else {
+                     jPasswordField1.setText("");
+                    throw new ExcepcionVentana("Contraseña incorrecta"); }
+               return;
+            }
+            else{ 
+                jTextField1.setText("");
+                throw new ExcepcionVentana("No existe Usuario");
+            }
+           
+           
+           }catch(NumberFormatException e){
+                 
+         }
+            
+        }
+    }
 }

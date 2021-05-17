@@ -70,10 +70,8 @@ public class BuscarVuelo {
     
     public void ciudaOrigen(){
         for(int i=0;i<this.lisAeropuerto.size();i++){
-            //System.out.println(this.pais);
             if(this.lisAeropuerto.get(i).getPais().equals(this.pais)){
                System.out.println(this.pais+"       "+lisAeropuerto.get(i).getCiudad()+"  "+lisAeropuerto.get(i).getNombreAeropuerto());
-                //this.nombreAerpuertoOrigen=lisAeropuerto.get(i).getNombreAeropuerto();
                 this.vectorCiudad.add(lisAeropuerto.get(i).getCiudad());
                 
             }
@@ -81,22 +79,18 @@ public class BuscarVuelo {
     }
     public void verificar()throws ExcepcionVentana{
         for(int i=0;i<vectorCiudad.size();i++){
-            try{
-            if(vectorCiudad.get(i).equals(this.ciudadcOrigen)){
-                 //JOptionPane.showMessageDialog(null, "Bien");
-                 origen=vectorCiudad.get(i);
-                 return;
-             }
+             try{
+                if(vectorCiudad.get(i).equals(this.ciudadcOrigen)){
+                    //JOptionPane.showMessageDialog(null, "Bien");
+                    origen=vectorCiudad.get(i);
+                    return;
+                }
+                else throw new ExcepcionVentana("Error en ciudad de origen "); 
              }catch(NumberFormatException e){
-           
-           throw new ExcepcionVentana("Ciudad de origen mal"); 
-       }
-           // this.setEstado(0);
-    
+                 throw new ExcepcionVentana("Error en ciudad de origen"); 
+         }
         }
-         //if(this.getEstado()==0){
-             //JOptionPane.showMessageDialog(null,"Ciudad de origen mal x");   
-        //}  
+  
     }
     
     public void buscarAeropuertoOrigen(){
@@ -118,9 +112,11 @@ public class BuscarVuelo {
             }
        }
        
-       public void buscarCodigoVuelo(){
-           for(int i=0;i<this.lisvuelos.size();i++){
-               if(lisvuelos.get(i).getNombreAerpurtoOrigen().equals(nombreAerpuertoOrigen)){
+    public void buscarCodigoVuelo() throws ExcepcionVentana{
+        for(int i=0;i<this.lisvuelos.size();i++){
+              
+            try{    
+                if(lisvuelos.get(i).getNombreAerpurtoOrigen().equals(nombreAerpuertoOrigen)){
                    if(lisvuelos.get(i).getNombreAerpurtoDestino().equals(nombreAerpuertoDestino)){
                        if(lisvuelos.get(i).getFechaDeSalida().equals(fechaSalida)){
                             
@@ -128,37 +124,52 @@ public class BuscarVuelo {
                             System.out.println(lisvuelos.get(i).getCodigoAvion());
                             
                        }
-                       else JOptionPane.showMessageDialog(null,"No Existe vuelo para esa fecha");
+                      else throw new ExcepcionVentana("No existe Vuelo Para esa fecha");
+                           //JOptionPane.showMessageDialog(null,"No Existe vuelo para esa fecha");
                    
                    }
-                   else JOptionPane.showMessageDialog(null,"No Existe vuelo para este Destino");
+                   else throw new ExcepcionVentana("No existe vuelo pra este Destino");
+                       //JOptionPane.showMessageDialog(null,"No Existe vuelo para este Destino");
                    
-                   return;
-               } 
-               this.setEstado(0);
+                    return;
+                }
+                
+                }catch(NumberFormatException e){
+           
+                throw new ExcepcionVentana("No existe vuelo para este origen"); 
             }
-            if(this.getEstado()==0){
-             JOptionPane.showMessageDialog(null,"No existe Vuelo para este de origen");   
-            }  
-       }
+                
+           
+        }
+    }     
        
-       public void buscarAviones(){
+       public void buscarAviones() throws ExcepcionVentana{
            for(int i=0;i<this.lisAviones.size();i++){
                
                if(lisAviones.get(i).getCodigoAvion()==this.codigoAvion){
                    this.nombreAerolinea=lisAviones.get(i).getNombreAerolinea();
                    System.out.println(lisAviones.get(i).getNombreAerolinea());
-                  
+                   
+                        buscarAerolinea();
                }
                
            }
-       
+           
        }
-       public void buscarAerolinea(){
+       public void buscarAerolinea()throws ExcepcionVentana{
+          try{  
           if(this.nombreAerolinea.equals(this.aerolinea)){
               JOptionPane.showMessageDialog(null,"Feliz viaje");
-          }
-          else JOptionPane.showMessageDialog(null,"No existe el vuelo en esa aerolinea");
+              InformacionVuelo tmp= new InformacionVuelo(codigoAvion,nombreAerpuertoOrigen,nombreAerpuertoDestino);
+              tmp.setVisible(true);
+              return;
+            }
+          else throw new ExcepcionVentana("No existeel vuelo en esta aerolinea"); 
+            }catch(NumberFormatException e){
+           
+                throw new ExcepcionVentana("No existeel vuelo en esta aerolinea"); 
+            }
+        
        }
             
     public String getNombreAerpuertoOrigen() {

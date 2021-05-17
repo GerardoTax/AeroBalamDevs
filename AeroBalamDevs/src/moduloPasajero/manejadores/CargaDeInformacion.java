@@ -102,7 +102,7 @@ public class CargaDeInformacion {
         }
     }
     
-        public void buscarvuelo(int numero){
+        public void buscarvuelo(int numero) throws ExcepcionVentana{
             String origen= (String) moduloPasajeros.getjComboBoxorigen().getSelectedItem();
             String destino= (String) moduloPasajeros.getjComboBoxDestino().getSelectedItem();
             String fecha= (String) moduloPasajeros.getjComboBoxfecha().getSelectedItem();
@@ -112,16 +112,14 @@ public class CargaDeInformacion {
             BuscarVuelo tmp= new BuscarVuelo(lisPasaporte,lisAviones,lisvuelos,lisAeropuerto,numero,origen,destino,fechavuelo,aerolinea);
             tmp.verificarExistenciaPasaporte();
             tmp.ciudaOrigen();
-        try {
             tmp.verificar();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
             tmp.buscarAeropuertoOrigen();
             tmp.buscarAeropuertoDestino();
             tmp.buscarCodigoVuelo();
             tmp.buscarAviones();
-            tmp.buscarAerolinea();
+            moduloPasajeros.dispose();
+            
+            
         }
         
         public static LocalDate darFormatoAFecha(String fechaCadena){
