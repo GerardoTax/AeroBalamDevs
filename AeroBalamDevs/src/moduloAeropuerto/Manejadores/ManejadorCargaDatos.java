@@ -132,11 +132,11 @@ public class ManejadorCargaDatos {
         String capasidadPasajeros=frameDatos.getjTextField9().getText();
         String capasidadGasolina=frameDatos.getjTextField10().getText();
         String consumomillas=frameDatos.getjTextField11().getText();
-        String campos[] = {aerolinea, aeropuertoActual,codigoAvion,capasidadPasajeros,capasidadGasolina, consumomillas};
-      
+        String campos[] = {aerolinea, aeropuertoActual,codigoAvion,capasidadPasajeros,capasidadGasolina, consumomillas,"4","4"};
         //creamos nuestro aerolinea  pasando el vector campos
         Aviones nuevoAviones = construirAviones(campos);
-        JOptionPane.showMessageDialog(null, "Aerolinea guardada Guardado");
+        
+        JOptionPane.showMessageDialog(null, "Avion  Guardado");
         frameDatos.getjTextField8().setText("");
         frameDatos.getjTextField9().setText("");
         frameDatos.getjTextField10().setText("");
@@ -145,7 +145,7 @@ public class ManejadorCargaDatos {
         lisaviones.add(nuevoAviones);
         try {
             //guardar el Pasaporte en un archivo binario
-            this.escritorDeAvionesBinarios.guardarAeropuerto(lisaviones);
+            this.escritorDeAvionesBinarios.guardarAviones(lisaviones);
         } catch (IOException ex) {
             Logger.getLogger(ModuloPasajeros.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -182,7 +182,7 @@ public class ManejadorCargaDatos {
      //costrucator de Aviones 
     public static Aviones construirAviones(String [] campos){
         Aviones aviones=null;
-        aviones=new Aviones(campos[0],campos[1],con(campos[2]),con(campos[3]),con(campos[4]),con(campos[5]));  
+        aviones=new Aviones(campos[0],campos[1],con(campos[2]),con(campos[3]),con(campos[4]),con(campos[5]),con(campos[6]),con(campos[7]));  
         return aviones;
     }
       // convierte de un string a un int 

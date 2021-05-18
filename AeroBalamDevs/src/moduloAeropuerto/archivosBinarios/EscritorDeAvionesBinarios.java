@@ -24,7 +24,7 @@ public class EscritorDeAvionesBinarios {
      
     public static final File  FILE_AVIONES= new File("/Users/dell/Desktop/AeroBalamDevs/AeroBalamDevs/GuardarArhivosBinarios/ArchivosBinariosAviones");
     
-    public void guardarAeropuerto(ArrayList<Aviones> lisAviones) throws IOException,FileNotFoundException{
+    public void guardarAviones(ArrayList<Aviones> lisAviones) throws IOException,FileNotFoundException{
          
         for (Aviones avioness : lisAviones) {
             // FileOutputStream para escribir flujos de byte

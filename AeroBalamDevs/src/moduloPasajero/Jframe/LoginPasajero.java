@@ -113,9 +113,7 @@ public class LoginPasajero extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       System.out.println( this.listaPasaporte.get(0).getNoPasaporte());
-       System.out.println( "Contraseña "+this.listaPasaporte.get(0).getContrasella());
-       System.out.println( this.listaPasaporte.get(0).getApellido());
+      
         try {
             verificarDatos();
          } catch (Exception e) {
@@ -164,6 +162,8 @@ public class LoginPasajero extends javax.swing.JFrame {
         }
     }
     public void cargar() throws ExcepcionVentana{
+        System.out.println(listaPasaporte.get(0).getContrasella());
+        System.out.println(pasaporte);
         for(int i=0; i<this.listaPasaporte.size();i++){
             try{
             if(this.listaPasaporte.get(i).getNoPasaporte()==pasaporte){
@@ -180,14 +180,11 @@ public class LoginPasajero extends javax.swing.JFrame {
                     throw new ExcepcionVentana("Contraseña incorrecta"); }
                return;
             }
-            else{ 
-                jTextField1.setText("");
-                throw new ExcepcionVentana("Este Usuario no existe");
-            }
            
            
            }catch(NumberFormatException e){
-                 
+                 jTextField1.setText("");
+                throw new ExcepcionVentana("Este Usuario no existe");
          }
             
         }

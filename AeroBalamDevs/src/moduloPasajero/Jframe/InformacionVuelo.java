@@ -12,7 +12,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import moduloAeropuerto.archivosBinarios.EscritorDeAvionesBinarios;
 import moduloAeropuerto.archivosBinarios.EscritorDeVueloBinarios;
+import moduloAeropuerto.clases.estructuraDeArchivo.Aviones;
 import moduloAeropuerto.clases.estructuraDeArchivo.Vuelo;
 import moduloAeropuerto.jFrame.VerAsientos;
 
@@ -28,12 +30,16 @@ public class InformacionVuelo extends javax.swing.JFrame {
     private EscritorDeVueloBinarios EscritorDeVueloBinarios;
     private ArrayList<Vuelo> lisVuelos;
     private ArrayList<Vuelo> Axiliar;
-     private Vector<String> vector= new Vector<>();
+    private Vector<String> vector= new Vector<>();
+    private ArrayList<Aviones> lisaviones;
+    private EscritorDeAvionesBinarios  escritorDeAvionesBinarios ;
+    private int indice;
     public InformacionVuelo(int codigo,String origen, String destino) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.codigo=codigo;
         this.EscritorDeVueloBinarios=new EscritorDeVueloBinarios();
+        this.escritorDeAvionesBinarios= new EscritorDeAvionesBinarios();
         this.origen=origen;
         this.destino=destino;
         leerVuelo();
@@ -114,9 +120,7 @@ public class InformacionVuelo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        VerAsientos ver =new VerAsientos();
-         ver.setVisible(true);
-         ver.mostrarAsientos(4, 4);
+          buscarAvion();
          this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -144,6 +148,7 @@ public class InformacionVuelo extends javax.swing.JFrame {
     
         try {
            lisVuelos= this.EscritorDeVueloBinarios.leerVuelos();
+           this.lisaviones=this.escritorDeAvionesBinarios.leerAvion();
         } catch (IOException ex) {
             Logger.getLogger(InformacionVuelo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -152,20 +157,7 @@ public class InformacionVuelo extends javax.swing.JFrame {
         informacionVuelo();
         
     }
-    
-     public  void llenarTabla(String campos, JTable table) {
-        DefaultTableModel modelo = new DefaultTableModel();
-        table.setModel(modelo);
-        //Anadir columnas
-        modelo.addColumn("Nombre origen");
-        modelo.addColumn("Nombre Destino");
-        modelo.addColumn("Precio");
-        modelo.addColumn("Fecha ");
-        
-            modelo.addRow(new Object[]{});
-        
-
-    }
+  
      public void informacionVuelo(){
          
         for(int i=0; i<lisVuelos.size();i++){
@@ -174,6 +166,7 @@ public class InformacionVuelo extends javax.swing.JFrame {
                     if(lisVuelos.get(i).getCodigoAvion()==codigo);
                     DefaultTableModel modelo = new DefaultTableModel();
                         this.jTable1.setModel(modelo);
+                        this.indice=i;
                          //Anadir columnas
                           modelo.addColumn("Nombre Aeropuerto origen");
                           modelo.addColumn("Nombre Aeropuerto Destino");
@@ -186,5 +179,18 @@ public class InformacionVuelo extends javax.swing.JFrame {
             }
         }
      
+     }
+     public void buscarAvion(){
+         
+         for(int i=0; i<this.lisaviones.size();i++){
+         
+          if(lisaviones.get(i).getCodigoAvion()==this.lisVuelos.get(indice).getCodigoAvion()){
+               System.out.println(" Existe "+i+"   "+lisaviones.get(i).getCodigoAvion());
+               VerAsientos ver =new VerAsientos(i);
+              ver.setVisible(true);
+              ver.mostrarAsientos(lisaviones.get(i).getFilas(), lisaviones.get(i).getColumnas());
+                    
+          }
+         }
      }
 }

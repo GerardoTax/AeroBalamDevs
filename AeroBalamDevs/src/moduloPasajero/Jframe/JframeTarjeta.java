@@ -55,7 +55,7 @@ public class JframeTarjeta extends javax.swing.JFrame {
         jLabel1.setText("Tarjeta ");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(126, 29, 83, 40));
 
-        jButton1.setText("Guardar");
+        jButton1.setText("Pagar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

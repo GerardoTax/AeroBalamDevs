@@ -53,19 +53,21 @@ public class BuscarVuelo {
         this.aerolinea=aerolinea;
     }
     
-    public void verificarExistenciaPasaporte(){
+    public void verificarExistenciaPasaporte() throws ExcepcionVentana{
         for(int i=0;i<lispasaporte.size();i++){
+            
             if(numeroPasaporte==lispasaporte.get(i).getNoPasaporte()){
-                System.out.println("Existe");
+                System.out.println("Existe  ...");
                 this.pais=this.lispasaporte.get(i).getPaisActual();
                 return;
             }
+            
             this.setEstado(0);
         }
         if(this.getEstado()==0){
+            
              JOptionPane.showMessageDialog(null,"EL pasaporte no Existe");   
         }   
-        
     }
     
     public void ciudaOrigen(){
@@ -103,15 +105,20 @@ public class BuscarVuelo {
         }
     
     } 
-       public void buscarAeropuertoDestino(){
+       public void buscarAeropuertoDestino() throws ExcepcionVentana{
             for(int i=0;i<this.lisAeropuerto.size();i++){
+                 try{ 
                 if(lisAeropuerto.get(i).getCiudad().equals(this.ciudadDestino)){
                     this.nombreAerpuertoDestino=lisAeropuerto.get(i).getNombreAeropuerto();
                     System.out.println(" destino "+lisAeropuerto.get(i).getNombreAeropuerto());
                  }
+                //else throw new ExcepcionVentana("No existe el destino");
+            }catch(NumberFormatException e){
+           
+                throw new ExcepcionVentana("No existe el destino"); 
             }
-       }
-       
+        }
+       }   
     public void buscarCodigoVuelo() throws ExcepcionVentana{
         for(int i=0;i<this.lisvuelos.size();i++){
               
@@ -128,7 +135,7 @@ public class BuscarVuelo {
                            //JOptionPane.showMessageDialog(null,"No Existe vuelo para esa fecha");
                    
                    }
-                   else throw new ExcepcionVentana("No existe vuelo pra este Destino");
+                   else throw new ExcepcionVentana("No existe vuelo para este Destino");
                        //JOptionPane.showMessageDialog(null,"No Existe vuelo para este Destino");
                    
                     return;

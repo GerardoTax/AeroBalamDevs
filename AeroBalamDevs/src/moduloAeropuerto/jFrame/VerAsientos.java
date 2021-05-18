@@ -5,11 +5,17 @@
  */
 package moduloAeropuerto.jFrame;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import moduloAeropuerto.Administracion.Asientos;
 import moduloAeropuerto.Administracion.Lista;
 import moduloAeropuerto.Administracion.Pasillo;
+import moduloAeropuerto.archivosBinarios.EscritorDeAvionesBinarios;
+import moduloAeropuerto.clases.estructuraDeArchivo.Aviones;
 
 /**
  *
@@ -18,15 +24,20 @@ import moduloAeropuerto.Administracion.Pasillo;
 public class VerAsientos extends javax.swing.JFrame {
 
     private Lista lis;
-    private int fila=0;
-    private int columna=0;
-    public VerAsientos() {
+    private ArrayList<Aviones> lisaviones;
+    private EscritorDeAvionesBinarios  escritorDeAvionesBinarios ;
+    private int indice;
+    public VerAsientos(int indice) {
         initComponents();
         this.setLocationRelativeTo(null);
         lis=new Lista(this);
         this.jTextField1.setVisible(false);
         this.jTextField2.setVisible(false);
         this.jButton1.setVisible(false);
+        this.jButton2.setVisible(false);
+        this.escritorDeAvionesBinarios=new EscritorDeAvionesBinarios();
+        this.indice=indice;
+        
         
         
     }
@@ -125,13 +136,16 @@ public class VerAsientos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        cargarinformacion();
         int fila = Integer.parseInt(this.jTextField1.getText());
         int columna= Integer.parseInt(this.jTextField2.getText());    
             mostrarAsientos(fila,columna);
-              
+            this.lisaviones.get(indice).setFilas(fila);
+            this.lisaviones.get(indice).setColumnas(columna);
+          
+            System.out.println(this.lisaviones.get(indice).getFilas());
                
-             
+            
                  
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -192,6 +206,7 @@ public class VerAsientos extends javax.swing.JFrame {
     public JButton getjButton1() {
         this.jTextField1.setVisible(true);
         this.jTextField2.setVisible(true);
+        this.jButton2.setVisible(true);
         return jButton1;
     }
 
@@ -205,6 +220,15 @@ public class VerAsientos extends javax.swing.JFrame {
 
     public void setjPanel2(JPanel jPanel2) {
         this.jPanel2 = jPanel2;
+    }
+    public void cargarinformacion(){
+        try {
+           this.lisaviones= this.escritorDeAvionesBinarios.leerAvion();
+        } catch (IOException ex) {
+            Logger.getLogger(VerAsientos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VerAsientos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

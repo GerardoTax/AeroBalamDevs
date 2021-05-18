@@ -583,8 +583,7 @@ public class FrameDatos extends javax.swing.JFrame  {
         
          try {
             this.manejadorCargaDatos.GuardarAviones();
-           // Avion tmp=new Avion();
-            //tmp.setVisible(true);
+           
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }

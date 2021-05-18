@@ -35,6 +35,7 @@ public class ModificarAvion {
     public void cargarIfomacion(){
         try {
             listaAvion=this.escritorDeAvionesBinarios.leerAvion();
+            
             buscarAvion();
         } catch (IOException ex) {
             Logger.getLogger(FrameDatos.class.getName()).log(Level.SEVERE, null, ex);
@@ -54,11 +55,12 @@ public class ModificarAvion {
                     this.cont=1;
                     System.out.println(" !"+listaAvion.get(i).getCodigoAvion());
                     System.out.println(" !"+listaAvion.get(i).getNombreAerolinea());
-                    JOptionPane.showMessageDialog(null,"se apodido enccontrar");
-                     VerAsientos tmp = new VerAsientos();
+                    JOptionPane.showMessageDialog(null,"Avion encontrado");
+                     VerAsientos tmp = new VerAsientos(i);
                      tmp.setVisible(true);
-                    // tmp.mostrarAsientos(4, 4);
-                     tmp.getjButton1().setVisible(true);
+                        System.out.println(listaAvion.get(i).getFilas()+"     "+listaAvion.get(i).getColumnas());
+                   //tmp.mostrarAsientos(listaAvion.get(i).getFilas(), listaAvion.get(i).getColumnas());
+                    tmp.getjButton1().setVisible(true);
                      framedatos.dispose();
                     return;
                  }         

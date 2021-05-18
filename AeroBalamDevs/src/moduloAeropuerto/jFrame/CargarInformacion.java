@@ -290,7 +290,7 @@ public class CargarInformacion extends javax.swing.JFrame {
             try {
                 //ArrayList<Aeropuerto> lisAeropuerto = this.lectorDeVehiculosEnTexto.leerFichero(fichero, this.historialDeCargaText);
                 ArrayList<Aviones> lisAviones =this.leerAeropuertoTxt.leerFicheroAviones(fichero, jTextArea1);
-                this.escritorDeAvionesBinarios.guardarAeropuerto(lisAviones);
+                this.escritorDeAvionesBinarios.guardarAviones(lisAviones);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Error al leer el archivo");
                 ex.printStackTrace();

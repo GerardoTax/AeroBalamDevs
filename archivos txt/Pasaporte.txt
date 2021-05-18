@@ -1,0 +1,2 @@
+PASAPORTE(7777777, ,4/4/2021,guate,Casado,luis,Tax,Masculino,4/4/2021,4/4/2021,mexico,5 )
+PASAPORTE(78787878, ,4/4/2021,guate,Casado,Roxana,Tax,Masculino,4/4/2021,4/4/2021,mexico,5 )

@@ -49,7 +49,7 @@ import moduloPasajero.Jframe.JframeTarjeta;
         this.verAsientos.acutalizar();
          JframeTarjeta tmp= new JframeTarjeta(verAsientos);
          tmp.setVisible(true);
-        // verAsientos.setVisible(false);
+        verAsientos.dispose();
         
          
          

@@ -116,7 +116,7 @@ public class ManejadorTarjeta {
          cargarPAsaorte();
          validarcampoTarjeta();
          Tarjeta nuevaTarjeta=construirTarjeta();
-        // JOptionPane.showMessageDialog(null, "Tarjeta Guardado");
+        JOptionPane.showMessageDialog(null, "Tarjeta Guardado");
          ArrayList<Tarjeta> lisTarjeta = new ArrayList<>();
         lisTarjeta.add(nuevaTarjeta);
          try {

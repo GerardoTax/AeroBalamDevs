@@ -20,16 +20,19 @@ public class Aviones  implements Serializable{
     private int capacidadPasajeros;
     private int capacidadGasolina;
     private int consumoPorMillas;
+    private int filas;
+    private int columnas;
    
     
-    public Aviones(String nombreAerolinea, String nombreAeropuerto,int codigoAvion, int capacidadPasajeros ,int capacidadGasolina, int consumoPorMillas) {
+    public Aviones(String nombreAerolinea, String nombreAeropuerto,int codigoAvion, int capacidadPasajeros ,int capacidadGasolina, int consumoPorMillas, int filas,int columnas) {
         this.nombreAerolinea=nombreAerolinea;
         this.nombreAeropuerto=nombreAeropuerto;
         this.codigoAvion=codigoAvion;
         this.capacidadPasajeros=capacidadPasajeros;
         this.capacidadGasolina=capacidadGasolina;
         this.consumoPorMillas=consumoPorMillas;
-        
+        this.filas=filas;
+        this.columnas=columnas;
     }
 
     public int getCodigoAvion() {
@@ -78,6 +81,22 @@ public class Aviones  implements Serializable{
 
     public void setNombreAeropuerto(String nombreAeropuerto) {
         this.nombreAeropuerto = nombreAeropuerto;
+    }
+
+    public int getFilas() {
+        return filas;
+    }
+
+    public void setFilas(int filas) {
+        this.filas = filas;
+    }
+
+    public int getColumnas() {
+        return columnas;
+    }
+
+    public void setColumnas(int columnas) {
+        this.columnas = columnas;
     }
    
 
