@@ -477,8 +477,18 @@ public class FrameDatos extends javax.swing.JFrame  {
         jPanel7.setBackground(new java.awt.Color(153, 153, 153));
 
         jButton7.setText("Gerente");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("operador");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("Vuelos");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -668,6 +678,18 @@ public class FrameDatos extends javax.swing.JFrame  {
          distancia.setVisible(true);
          this.dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        FrameOperador frameOperador=new FrameOperador();
+        frameOperador.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        FrameGerencia frameGerencia =new FrameGerencia();
+        frameGerencia.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> area;

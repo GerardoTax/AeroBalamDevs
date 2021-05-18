@@ -20,7 +20,15 @@ import moduloPasajero.Jframe.JframeTarjeta;
    public class Asientos extends JButton  implements ActionListener{
      
     private VerAsientos verAsientos;
+    private int posx;
+    private int posy;
+    private int ancho;
+    private int alto;
     public Asientos(int posx, int posy ,int ancho  ,int alto,VerAsientos verAsientos   ){
+        this.posx=posx;
+        this.posy=posy;
+        this.ancho=ancho;
+        this.alto=alto;
         super.setBounds(posx, posy, ancho, alto);
         this.verAsientos=verAsientos;
         addActionListener(this);
@@ -36,8 +44,13 @@ import moduloPasajero.Jframe.JframeTarjeta;
     @Override
     public void actionPerformed(ActionEvent e) {
         setBackground(Color.RED);
+        Pasillo ocupado = new Pasillo(posx,posy,ancho,alto,this.verAsientos);
+        this.verAsientos.getjPanel1().updateUI(); 
+        this.verAsientos.acutalizar();
          JframeTarjeta tmp= new JframeTarjeta(verAsientos);
          tmp.setVisible(true);
+        // verAsientos.setVisible(false);
+        
          
          
          

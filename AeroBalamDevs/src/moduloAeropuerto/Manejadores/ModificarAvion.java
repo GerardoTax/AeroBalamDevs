@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import moduloAeropuerto.archivosBinarios.EscritorDeAvionesBinarios;
 import moduloAeropuerto.clases.estructuraDeArchivo.Aviones;
 import moduloAeropuerto.jFrame.FrameDatos;
+import moduloAeropuerto.jFrame.VerAsientos;
 
 /**
  *
@@ -53,7 +54,12 @@ public class ModificarAvion {
                     this.cont=1;
                     System.out.println(" !"+listaAvion.get(i).getCodigoAvion());
                     System.out.println(" !"+listaAvion.get(i).getNombreAerolinea());
-                    JOptionPane.showMessageDialog(null,"existe");
+                    JOptionPane.showMessageDialog(null,"se apodido enccontrar");
+                     VerAsientos tmp = new VerAsientos();
+                     tmp.setVisible(true);
+                    // tmp.mostrarAsientos(4, 4);
+                     tmp.getjButton1().setVisible(true);
+                     framedatos.dispose();
                     return;
                  }         
             }

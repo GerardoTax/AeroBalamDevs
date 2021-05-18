@@ -78,11 +78,11 @@ public class IformacionPasajero extends javax.swing.JFrame {
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 76, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel5.setText("0");
+        jLabel5.setText("1");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(206, 10, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setText("0");
+        jLabel6.setText("350");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(206, 43, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -175,6 +175,6 @@ public class IformacionPasajero extends javax.swing.JFrame {
                          pasaporte.get(indice).getEstadoCivil(),pasaporte.get(indice).getNombre(),pasaporte.get(indice).getApellido(),
                          pasaporte.get(indice).getSexo(),pasaporte.get(indice).getFechaVencimiento(),pasaporte.get(indice).getFechaEmision(),
                          pasaporte.get(indice).getPaisActual(),pasaporte.get(indice).getMillasrecoridas()});
-                       
+                       this.jLabel7.setText(String.valueOf(pasaporte.get(indice).getMillasrecoridas()));
     }
 }

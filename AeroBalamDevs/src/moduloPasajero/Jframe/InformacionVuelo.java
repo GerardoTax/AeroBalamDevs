@@ -116,6 +116,7 @@ public class InformacionVuelo extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         VerAsientos ver =new VerAsientos();
          ver.setVisible(true);
+         ver.mostrarAsientos(4, 4);
          this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

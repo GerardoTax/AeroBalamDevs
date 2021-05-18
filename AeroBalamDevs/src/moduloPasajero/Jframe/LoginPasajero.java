@@ -92,7 +92,7 @@ public class LoginPasajero extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\dell\\Downloads\\login.jpg")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/login.jpg"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 290, 360));
 
         pack();
@@ -182,7 +182,7 @@ public class LoginPasajero extends javax.swing.JFrame {
             }
             else{ 
                 jTextField1.setText("");
-                throw new ExcepcionVentana("No existe Usuario");
+                throw new ExcepcionVentana("Este Usuario no existe");
             }
            
            
